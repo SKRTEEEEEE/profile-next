@@ -1,4 +1,5 @@
 import { test, expect, Page } from "@playwright/test";
+import { getUrl } from "./utils/url";
 
 interface Vitals {
   LCP: number;
@@ -67,7 +68,9 @@ test.describe("Next.js Performance + JS Coverage", () => {
     await setupVitals(page);
 
     const start = Date.now();
-    await page.goto("http://localhost:3000");
+    const url = getUrl();
+    console.log("Testing URL:", url);
+    await page.goto(url);
     await page.waitForLoadState("networkidle");
     const loadTime = Date.now() - start;
 
