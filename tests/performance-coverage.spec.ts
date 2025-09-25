@@ -74,12 +74,16 @@ test.describe("Next.js Performance + JS Coverage", () => {
     await page.waitForLoadState("networkidle");
     const loadTime = Date.now() - start;
 
+    await page.mouse.click(100, 100); // click en algún punto de la página
+    await page.keyboard.press('Tab'); // o interacciones de teclado
+
+
     // esperar un poco para que los observers recojan métricas
     const vitals: Vitals = await page.evaluate(() => {
       return new Promise<Vitals>((resolve) => {
         setTimeout(
           () => resolve(window.vitals ?? { LCP: 0, CLS: 0, FID: 0 }),
-          500
+          5000
         );
       });
     });

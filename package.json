@@ -1,6 +1,6 @@
 {
   "name": "profile-next",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -8,8 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "test": "npx playwright test",
-    "test:prod": "cross-env TEST_ENV=production npx playwright test"
-
+    "test:prod": "cross-env TEST_ENV=production npx playwright test",
+    "lh:home": "npx lighthouse http://localhost:3000 --output=json --output=html --output-path=./docs/lighthouse-reports/home.html --chrome-flags='--headless' --no-enable-error-reporting",
+    "lhci": "lhci autorun --config=lighthouserc.json"
   },
   "dependencies": {
     "next": "15.5.4",
@@ -20,6 +21,7 @@
     "@commitlint/cli": "^20.0.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@eslint/eslintrc": "^3",
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.55.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
