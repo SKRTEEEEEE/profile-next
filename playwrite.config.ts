@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: './tests',          // Carpeta donde están tus tests
   testMatch: '*.spec.ts',      // Patrón de archivos
   timeout: 30000,              // Timeout por test
-  retries: 1,                  // Reintentos si falla
+  retries: 2,                  // Reintentos si falla
   use: {
     headless: true,            // Ejecutar en headless
     viewport: { width: 1280, height: 720 },
