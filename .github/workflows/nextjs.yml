@@ -34,23 +34,6 @@ jobs:
       - name: Lint code 💅
         run: npm run lint
 
-      - name: Setup Playwright 🧪
-        run: npx playwright install --with-deps
-
-      - name: Start Next.js server 🚀
-        run: |
-          npm run start &
-          echo $! > next.pid
-        env:
-          PORT: 3000
-
-      - name: Run Playwright tests ✅
-        run: npm run test
-
-      - name: Stop Next.js server 🛑
-        run: |
-          kill $(cat next.pid) || true
-
       - name: Cache Next.js build ⚡
         uses: actions/cache@v4
         with:

@@ -26,7 +26,7 @@
 - [ ] **coverage**: Test coverage --hard (80%) and add info to PR
 - [x] **assign-me**: Assign the PR to the creator of the project?
 - [x] **dependency review**: Review of dependency vulnerabilities
-- [x] **dependabot auto merge with security check**
+- [x] **dependabot auto merge **
 
 
 
@@ -40,7 +40,8 @@
     - [ ] nice lowlight
 - [ ] **project labels**: actualizar labels con las tecnologias de desarrollo (excluir dev-deps y ciertas libs, ya pensaremos como) 
 - [ ] **changelog**: add changelog
-- [ ] **tag creation**: auto-tag con versión
+- [x] **tag creation**: auto-tag con versión
+- [x] **todo to issue**: create a issue from a todo
 
 ### **regular/scheduled**
 - [ ] **health checks**: daily API endpoint monitoring

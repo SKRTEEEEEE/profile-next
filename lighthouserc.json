@@ -14,7 +14,7 @@
     },
     "upload": {
       "target": "filesystem",
-      "outputDir": "./lighthouse-reports"
+      "outputDir": "./docs/lighthouse-reports"
     }
   }
 }

@@ -7,6 +7,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
+    "coverage": "nyc npm test",
     "test": "npx playwright test",
     "test:prod": "cross-env TEST_ENV=production npx playwright test",
     "lh:home": "npx lighthouse http://localhost:3000 --output=json --output=html --output-path=./docs/lighthouse-reports/home.html --chrome-flags='--headless' --no-enable-error-reporting",
@@ -31,6 +32,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "husky": "^9.1.7",
+    "nyc": "^17.1.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

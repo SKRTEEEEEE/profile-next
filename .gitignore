@@ -43,3 +43,10 @@ next-env.d.ts
 # lighthouse
 docs/lighthouse-reports
 .lighthouseci
+
+# nyc
+.nyc_output
+docs/coverage-reports
+
+# docs/performance/
+docs/performance
