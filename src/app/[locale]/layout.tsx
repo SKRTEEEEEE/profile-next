@@ -7,17 +7,21 @@ import { routing } from '@/libs/i18n/routing';
 import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ModeToggle } from '@/components/mode-toggle';
+import { ReactNode } from 'react';
 
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
+
+interface LocaleLayoutProps {
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+}
 
 export default async function LocaleLayout({
   children,
   params
-}: {
-  children: React.ReactNode;
-  params: Awaited<{locale: string }>;
-}) {
-  const locale = (await params).locale
+}: LocaleLayoutProps) {
+  const { locale } = await params;
+  
   // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(locale as "en"|"de"|"es"|"ca")) {
     notFound();
