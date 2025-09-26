@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - develop
 
 permissions:
   contents: write
@@ -12,7 +11,6 @@ permissions:
 jobs:
   lhci:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout 🛬
         uses: actions/checkout@v4
@@ -25,15 +23,6 @@ jobs:
       - name: Install dependencies 📩
         run: npm ci
 
-      - name: Build Next.js 📦
-        run: npm run build
-
-      - name: Start Next.js server 🚀
-        run: npm run start &
-      
-      - name: Wait for server to be ready ⏳
-        run: npx wait-on http://localhost:3000
-
       - name: Setup Playwright / Chrome 🧪
         run: npx playwright install --with-deps
 
@@ -43,13 +32,13 @@ jobs:
           TEST_URL: http://localhost:3000
 
       - name: Upload Lighthouse reports 📄
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: lighthouse-reports
           path: ./lighthouse-reports
 
       - name: Deploy Lighthouse reports to GitHub Pages 🌐
-        uses: peaceiris/actions-gh-pages@v6
+        uses: peaceiris/actions-gh-pages@v5
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./lighthouse-reports
