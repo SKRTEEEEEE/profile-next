@@ -1,5 +1,5 @@
 import { test, expect, Page } from "@playwright/test";
-import { getUrl } from "./utils/url";
+import { getUrl } from "../../utils/url";
 
 interface Vitals {
   LCP: number;
@@ -112,4 +112,6 @@ test.describe("Next.js Performance + JS Coverage", () => {
     const percent = totalLength ? (totalExecuted / totalLength) * 100 : 0;
     console.log(`JS Coverage total: ${percent.toFixed(2)}%`);
   });
+
+
 });
