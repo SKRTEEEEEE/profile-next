@@ -7,8 +7,8 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "coverage": "nyc npm test",
-    "test": "npx playwright test",
+    "coverage": "nyc playwright test",
+    "test": "nyc playwright test",
     "test:prod": "cross-env TEST_ENV=production npx playwright test",
     "lh:home": "npx lighthouse http://localhost:3000 --output=json --output=html --output-path=./docs/lighthouse-reports/home.html --chrome-flags='--headless' --no-enable-error-reporting",
     "lhci": "lhci autorun --config=lighthouserc.json"
