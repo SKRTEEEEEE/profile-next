@@ -1,6 +1,6 @@
 "use server"
 
-import { routing } from '@/libs/i18n/routing';
+import { routing } from '@/lib/i18n/routing';
 import { cookies, headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 

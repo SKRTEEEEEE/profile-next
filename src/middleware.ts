@@ -1,7 +1,7 @@
 import createMiddleware from 'next-intl/middleware';
 import { manageRoot } from './actions/root';
 import type { NextRequest } from 'next/server';
-import { routing } from './libs/i18n/routing';
+import { routing } from './lib/i18n/routing';
 
 // Crear una función que combine el middleware de internacionalización con tu lógica
 const middleware = async (request: NextRequest) => {

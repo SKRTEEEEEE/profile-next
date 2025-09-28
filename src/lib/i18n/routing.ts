@@ -14,34 +14,33 @@ export const routing = defineRouting({
   // List of rutes translation
   pathnames: {
     "/":"/",
-    // "/ceo": "/ceo",
-    // "/ceo/proyectos": {
-    //   en: "/ceo/projects",
-    //   de: "/ceo/projekte",
-    //   es: "/ceo/proyectos",
-    //   ca: "/ceo/projectes"
-    // },
-    // "/ceo/proyectos/[id]": {
-    //   en: "/ceo/projects/[id]",
-    //   de: "/ceo/projekte/[id]",
-    //   es: "/ceo/proyectos/[id]",
-    //   ca: "/ceo/projectes/[id]"
-    // },
-    // "/ceo/portafolio": {
-    //   en: "/ceo/portfolio",
-    //   de: "/ceo/portfolio",
-    //   es: "/ceo/portafolio",
-    //   ca: "/ceo/portafoli"
-    // },
-    // "/ceo/info": "/ceo/info",
-    // "/ceo/estudios": {
-    //   en: "/ceo/studies",
-    //   de: "/ceo/studien",
-    //   es: "/ceo/estudios",
-    //   ca: "/ceo/estudis"
-    // },
-    // "/ceo/docs/[slug]":"/ceo/docs/[slug]",
-    // "/ceo/code": "/ceo/code",
+    "/proyectos": {
+      en: "/projects",
+      de: "/projekte",
+      es: "/proyectos",
+      ca: "/projectes"
+    },
+    "/proyectos/[id]": {
+      en: "/projects/[id]",
+      de: "/projekte/[id]",
+      es: "/proyectos/[id]",
+      ca: "/projectes/[id]"
+    },
+    "/portafolio": {
+      en: "/portfolio",
+      de: "/portfolio",
+      es: "/portafolio",
+      ca: "/portafoli"
+    },
+    "/info": "/info",
+    "/estudios": {
+      en: "/studies",
+      de: "/studien",
+      es: "/estudios",
+      ca: "/estudis"
+    },
+    "/docs/[slug]":"/docs/[slug]",
+    "/code": "/code",
     // "/academia":{
     //   en: "/academy",
     //   de: "/akademie",

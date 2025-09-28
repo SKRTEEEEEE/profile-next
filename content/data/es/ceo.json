@@ -12,16 +12,20 @@
             "introduction": {
                 "greeting": "Hola",
                 "introduction": "soy",
-                "developer_title": "Desarrollador",
+                "developer_title": "Desarrollador Fullstack",
                 "type_animation": {
-                    "1": "de la nueva generación web descentralizada",
-                    "2": "de branding web para proyectos innovadores",
-                    "3": "de interacción entre mundo real y web3",
-                    "4": "utilizando tecnologías web actuales e eficientes."
+                    "1": "con interés en tecnologías seguras y escalables",
+                    "2": "enfocado en ofrecer una experiencia de usuario agradable",
+                    "3": "con alta experiencia en el ecosistema de TypeScript",
+                    "4": "especializado en web, IIoT y DevOps."
                 },
-                "description": "Fullstack especializado en tecnologías escalables y descentralizadas, enfocado en ofrecer una experiencia de usuario agradable a través de funcionalidad interactiva y segura.",
+                "description": "Arquitecturas escalables y seguras, protocolos de comunicación y DevOps.",
                 "buttons": {
-                    "view_projects": "Ver proyectos",
+                    "view_projects": "Proyectos",
+                    "tech_stack": "Stack tecnológico",
+                    "studies": "Estudios",
+                    "cv": "Curriculum Web",
+                    "old_frontend": "Versión antigua",
                     "contact_me": "Contacta conmigo"
                 }
             }
