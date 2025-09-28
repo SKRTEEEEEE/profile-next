@@ -3,9 +3,9 @@
 import { toast } from "sonner";
 import { Button } from "./ui/button";
 
-const TestButton = () => {
+const TestButton = ({className}: {className?:string}) => {
     return (
-        <Button onClick={()=> toast.info("You're inside dev🟩", {description: "Good hack time!"})}>
+        <Button variant={"outline"} className={className} onClick={()=> toast.info("You're inside dev🟩", {description: "Good hack time!"})}>
           Click
         </Button>
     );

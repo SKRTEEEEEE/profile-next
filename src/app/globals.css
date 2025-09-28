@@ -4,6 +4,65 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Estados */
+  --color-success: #7eea0b;
+  --color-caution: #eeee11;
+  --color-danger: #ef3f4e;
+  --color-info: #3585d4;
+
+  /* Primary CEO */
+  --color-primary-ceo-50: #f6fefe;
+  --color-primary-ceo-100: #e7fdfd;
+  --color-primary-ceo-200: #d0fbfb;
+  --color-primary-ceo-300: #aaf8f8;
+  --color-primary-ceo-400: #55f1f1;
+  --color-primary-ceo-500: #12d9d9;
+  --color-primary-ceo-600: #0d9c9c;
+  --color-primary-ceo-700: #097171;
+  --color-primary-ceo-800: #054242;
+  --color-primary-ceo-900: #032121;
+  --color-primary-ceo-950: #021313;
+
+  /* Secondary CEO */
+  --color-secondary-ceo-50: #fcf7fd;
+  --color-secondary-ceo-100: #f9eafa;
+  --color-secondary-ceo-200: #f2d5f6;
+  --color-secondary-ceo-300: #e8b4ee;
+  --color-secondary-ceo-400: #d169dd;
+  --color-secondary-ceo-500: #b02bbf;
+  --color-secondary-ceo-600: #7f1f89;
+  --color-secondary-ceo-700: #5c1764;
+  --color-secondary-ceo-800: #360d3a;
+  --color-secondary-ceo-900: #1b071d;
+  --color-secondary-ceo-950: #0f0411;
+
+  /* Neutral */
+  --color-neutral-50: #f8f9fb;
+  --color-neutral-100: #eeeff6;
+  --color-neutral-200: #dedfed;
+  --color-neutral-300: #c3c5df;
+  --color-neutral-400: #878bc0;
+  --color-neutral-500: #51569a;
+  --color-neutral-600: #3a3e6e;
+  --color-neutral-700: #2a2d50;
+  --color-neutral-800: #191a2f;
+  --color-neutral-900: #0c0d17;
+  --color-neutral-950: #07070d;
+
+  /* Gradiente */
+  --background-image-gradient-cover: linear-gradient(
+    90.21deg,
+    rgba(170, 54, 124, 0.5) -5.91%,
+    rgba(74, 47, 189, 0.5) 111.58%
+  );
+  --background-image-gradient-cover-dark: linear-gradient(
+    90.21deg,
+    rgba(10, 5, 60, 0.9) -5.91%,
+    rgba(20, 10, 30, 0.9) 111.58%
+  );
+}
+
+@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
