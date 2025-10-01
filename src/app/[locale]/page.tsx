@@ -10,7 +10,7 @@ export default async function Home() {
   const t = await getTranslations("ceo");
 
   return (
-    <main className="max-h-dvh w-full pb-8 pt-12 px-4 sm:px-6 lg:px-8">
+    <main className="max-h-dvh w-full p-1 md:pb-8 md:pt-12 px-4 sm:px-6 lg:px-8">
       <CoverParticles />
       <div className="z-20 select-none w-full">
         <div className="flex justify-center w-full">
@@ -28,7 +28,7 @@ export default async function Home() {
               </span>
             </div>
 
-            <span className="block xl:mt-0 mt-2 text-[clamp(2.5rem,10vw,5rem)] leading-tight">
+            <span className="block xl:mt-0 sm:mt-2 text-[clamp(2.5rem,10vw,5rem)] leading-tight">
               Adan Reh Mañach
             </span>
             <span className="hidden xl:inline-block text-7xl hover:animate-caret-blink origin-bottom-left ">
@@ -42,7 +42,7 @@ export default async function Home() {
           <div className="flex flex-col items-center gap-1 font-semibold md:items-end md:gap-6 order-last md:order-none">
             <LinkLocale
               href="/"
-              className=" w-52 flex items-center px-4 py-2 my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-800/80 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
+              className=" w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-800/80 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
             >
               <div>💻</div>
               <div className="w-full text-center">
@@ -51,7 +51,7 @@ export default async function Home() {
             </LinkLocale>
             <LinkLocale
               href="/"
-              className=" w-52 flex items-center px-4 py-2 my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-800/70 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
+              className=" w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-800/70 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
             >
               <div>⚙️</div>
               <div className="w-full text-center">
@@ -60,7 +60,7 @@ export default async function Home() {
             </LinkLocale>
             <LinkLocale
               href="/"
-              className=" w-52 flex items-center px-4 py-2 my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-800/60 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
+              className=" w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-800/60 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
             >
               <div>🧑‍🎓</div>
               <div className="w-full text-center">
@@ -69,7 +69,7 @@ export default async function Home() {
             </LinkLocale>
             <LinkLocale
               href="/"
-              className=" w-52 flex items-center px-4 py-2 my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-900/60 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
+              className=" w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-900/60 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
             >
               <div>📋</div>
               <div className="w-full text-center">

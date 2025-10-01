@@ -10,14 +10,13 @@ import {
   NavigationMenuItem,
   NavigationMenuTrigger,
 } from "../ui/navigation-menu";
-// import { Button } from '@/components/ui/button';
 
 export default function LocalSwitcher() {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const localActive = useLocale();
   const route = usePathname();
-  const t = useTranslations("root")
+  const t = useTranslations("root");
 
   const pathname = route.split("/").slice(2).join("/");
 
@@ -36,28 +35,19 @@ export default function LocalSwitcher() {
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger >
-        {/* <Button 
-          variant="ghost" 
-          size="icon"
-          aria-label="Seleccionar idioma"
-          className="w-10 h-10 rounded-full"
-        >
-          <Globe className="h-5 w-5" />
-        </Button> */}
+      <NavigationMenuTrigger>
         <div className="flex items-center gap-2">
-            <Languages  className="h-4 w-4" />
-            {t("lang")}
+          <Languages className="h-4 w-4" />
+          {t("lang")}
         </div>
-        
       </NavigationMenuTrigger>
-      <NavigationMenuContent className="w-[200px] p-0">
-        <ul className="flex flex-col gap-2">
+      <NavigationMenuContent >
+        <ul className="grid w-[200px] gap-2 p-4">
           {languages.map(({ value, label }) => (
             <li
               key={value}
               onClick={() => onSelectChange(value)}
-              className={`flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 transition hover:bg-neutral-800/50 ${
+              className={`flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 transition hover:bg-neutral-800/50 ${
                 isPending ? "opacity-50 pointer-events-none" : ""
               }`}
             >
@@ -68,7 +58,7 @@ export default function LocalSwitcher() {
                 />
                 <AvatarFallback>{value.toUpperCase()}</AvatarFallback>
               </Avatar>
-              <span>{label}</span>
+              <span className="text-sm">{label}</span>
               {value === localActive && (
                 <span className="ml-auto text-green-600">✓</span>
               )}
