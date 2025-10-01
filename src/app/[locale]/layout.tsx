@@ -47,7 +47,7 @@ export default async function LocaleLayout({
              
               className="h-screen bg-no-repeat bg-gradient-cover-dark"
             >
-              <div className="w-full fixed flex z-50 justify-center top-4">
+              <div className="w-full fixed flex z-50 justify-center md:top-4">
               <Navbar/>
               </div>
               <Toaster position="bottom-right" />

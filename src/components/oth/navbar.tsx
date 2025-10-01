@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { GithubIcon, LinkedinIcon, Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon, Mail, SatelliteDish } from "lucide-react";
 
 import {
   NavigationMenu,
@@ -16,6 +16,8 @@ import { Link as LinkLocale, usePathname } from "@/lib/i18n/routing";
 import Link from "next/link";
 import { creatorData } from "@/lib/data";
 import LocalSwitcher from "./local-switch";
+import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
+
 
 function Github({ className }: { className?: string }) {
   return (
@@ -62,14 +64,16 @@ function Email({ className }: { className?: string }) {
 
 export function Navbar() {
   const pathname = usePathname();
+  const isSmallScreen = useMediaQuery("(max-width: 640px)");
+
   return (
-    <NavigationMenu className="z-50" viewport={false}>
+    <NavigationMenu className="z-50">
       <NavigationMenuList>
         {pathname !== "/" && (
           <NavigationMenuItem>
             <NavigationMenuTrigger>Home</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+              <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <LinkLocale
@@ -110,63 +114,54 @@ export function Navbar() {
           </NavigationMenuItem>
         )}
 
-        {pathname !== "/" ? (
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              asChild
-              className={navigationMenuTriggerStyle()}
-            >
-              <LinkLocale href="/">Stack Tech</LinkLocale>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
+        {pathname === "/" && !isSmallScreen ? (
+          <>
+            <NavigationMenuItem>
+              <Github className={navigationMenuTriggerStyle()} />
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <LinkedIn className={navigationMenuTriggerStyle()} />
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Email className={navigationMenuTriggerStyle()} />
+            </NavigationMenuItem>
+          </>
         ) : (
           <NavigationMenuItem>
-            <Github className={navigationMenuTriggerStyle()} />
-          </NavigationMenuItem>
-        )}
-        {pathname !== "/" ? (
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              asChild
-              className={navigationMenuTriggerStyle()}
-            >
-              <LinkLocale href="/">Stack Tech</LinkLocale>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        ) : (
-          <NavigationMenuItem>
-            <LinkedIn className={navigationMenuTriggerStyle()} />
-          </NavigationMenuItem>
-        )}
-        {pathname !== "/" ? (
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              asChild
-              className={navigationMenuTriggerStyle()}
-            >
-              <LinkLocale href="/">Stack Tech</LinkLocale>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        ) : (
-          <NavigationMenuItem>
-            <Email className={navigationMenuTriggerStyle()} />
-          </NavigationMenuItem>
-        )}
-
-        {pathname !== "/" && (
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Social</NavigationMenuTrigger>
+            <NavigationMenuTrigger>
+              <div className="flex items-center gap-2">
+          <SatelliteDish className="h-4 w-4" />
+          Social
+        </div>
+              </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[200px] gap-4">
-                <li>
-                  <Github />
-                  <LinkedIn />
-                  <Email />
-                </li>
+              <ul className="grid w-[250px] gap-3 p-4">
+                <ListItem
+                  href={creatorData.githubUrl}
+                  title="Github"
+                  target="_blank"
+                >
+                  Repositorios y proyectos open source
+                </ListItem>
+                <ListItem
+                  href={creatorData.linkedin}
+                  title="LinkedIn"
+                  target="_blank"
+                >
+                  Perfil profesional y experiencia
+                </ListItem>
+                <ListItem
+                  href={creatorData.emailTo}
+                  title="Email"
+                  target="_blank"
+                >
+                  Contacto directo por correo
+                </ListItem>
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
         )}
+
         <LocalSwitcher />
       </NavigationMenuList>
     </NavigationMenu>
