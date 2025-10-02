@@ -5,7 +5,7 @@ import { SimpleIcon } from "simple-icons";
 export type SimpleIconNames = keyof typeof SimpleIcons;
 
 interface DynamicSimpleIconProps extends React.SVGAttributes<SVGElement> {
-  iconName: SimpleIconNames;
+  iconName: SimpleIconNames | undefined;
   size?: string | number;
   color?: string;
 }
@@ -16,7 +16,7 @@ export const DynamicSimpleIcon: React.FC<DynamicSimpleIconProps> = ({
   color,
   ...props
 }) => {
-  const icon = SimpleIcons[iconName] as SimpleIcon | undefined;
+  const icon = SimpleIcons[iconName!] as SimpleIcon | undefined;
 
   if (!icon) {
     console.warn(`Icon "${String(iconName)}" not found in Simple Icons`);

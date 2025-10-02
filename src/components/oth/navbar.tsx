@@ -17,7 +17,7 @@ import Link from "next/link";
 import { creatorData } from "@/lib/data";
 import LocalSwitcher from "./local-switch";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
-
+import { useTranslations } from "next-intl";
 
 function Github({ className }: { className?: string }) {
   return (
@@ -65,13 +65,14 @@ function Email({ className }: { className?: string }) {
 export function Navbar() {
   const pathname = usePathname();
   const isSmallScreen = useMediaQuery("(max-width: 640px)");
+  const t = useTranslations("ceo");
 
   return (
     <NavigationMenu className="z-50">
       <NavigationMenuList>
         {pathname !== "/" && (
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Home</NavigationMenuTrigger>
+            <NavigationMenuTrigger>Apps</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
@@ -102,17 +103,89 @@ export function Navbar() {
                   Panel de administración para gestionar la página y sus
                   contenidos.
                 </ListItem>
-                <ListItem
-                  href="/docs/primitives/typography"
-                  target="_blank"
-                  title="Desarrollador"
-                >
-                  Información sobre el desarrollador y su experiencia.
-                </ListItem>
+                <li>
+                  <NavigationMenuLink asChild>
+                    <LinkLocale href="/" >
+                      <div className="text-sm leading-none font-medium">
+                        Desarrollador
+                      </div>
+                      <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+                        Información sobre el desarrollador y su experiencia.
+                      </p>
+                    </LinkLocale>
+                  </NavigationMenuLink>
+                </li>
+                
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
         )}
+
+        {pathname !== "/" ? !isSmallScreen ? (
+          <>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+              <LinkLocale
+              href="/"
+              className=" flex flex-row items-center gap-2"
+            >
+              <div>💻</div>
+              <div className="w-full text-center">
+                {t("main.introduction.buttons.view_projects")}
+              </div>
+            </LinkLocale>
+            </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <LinkLocale
+              href="/info"
+              className=" w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-800/70 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
+            >
+              <div>⚙️</div>
+              <div className="w-full text-center">
+                {t("main.introduction.buttons.tech_stack")}
+              </div>
+            </LinkLocale>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Email className={navigationMenuTriggerStyle()} />
+            </NavigationMenuItem>
+          </>
+        ) : (
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>
+              <div className="flex items-center gap-2">
+                <SatelliteDish className="h-4 w-4" />
+                Working
+              </div>
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[250px] gap-3 p-4">
+                <ListItem
+                  href={creatorData.githubUrl}
+                  title="Github"
+                  target="_blank"
+                > 
+                  Repositorios y proyectos open source
+                </ListItem>
+                <ListItem
+                  href={creatorData.linkedin}
+                  title="LinkedIn"
+                  target="_blank"
+                >
+                  Perfil profesional y experiencia
+                </ListItem>
+                <ListItem
+                  href={creatorData.emailTo}
+                  title="Email"
+                  target="_blank"
+                >
+                  Contacto directo por correo
+                </ListItem>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        ):null}
 
         {pathname === "/" && !isSmallScreen ? (
           <>
@@ -130,17 +203,17 @@ export function Navbar() {
           <NavigationMenuItem>
             <NavigationMenuTrigger>
               <div className="flex items-center gap-2">
-          <SatelliteDish className="h-4 w-4" />
-          Social
-        </div>
-              </NavigationMenuTrigger>
+                <SatelliteDish className="h-4 w-4" />
+                Social
+              </div>
+            </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[250px] gap-3 p-4">
                 <ListItem
                   href={creatorData.githubUrl}
                   title="Github"
                   target="_blank"
-                >
+                > 
                   Repositorios y proyectos open source
                 </ListItem>
                 <ListItem

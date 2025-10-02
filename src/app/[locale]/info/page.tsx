@@ -1,15 +1,20 @@
 
 
-import SliderTechs from "@/components/oth/slider-techs";
 
+import SliderTechs from "@/components/oth/slider-techs";
 import { Button } from "@/components/ui/button";
-import { readAllTechsC } from "@/core/interface-adapters/controllers/tech/read.controller";
+import { ReadTechFlattenUseCase } from "@/core/application/usecases/tech";
+import { techApiRepository } from "@/core/infrastructure/api/tech";
+// import { readAllTechsC } from "@/core/interface-adapters/controllers/tech/read.controller";
 import { Link as LinkLocale } from "@/lib/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
+import { toast } from "sonner";
 
 const AboutMePage = async () => {
-    const {flattenTechs:allLeng} = await readAllTechsC()
+    const {data:allLeng} = await new ReadTechFlattenUseCase(techApiRepository).execute()
+    if(!allLeng)return toast.error("No techs found")
+    // const {flattenTechs:allLeng} = await readAllTechsC()
     const t = await getTranslations()
 
 
@@ -41,7 +46,7 @@ const AboutMePage = async () => {
                 </section>
 
                 {/* SLIDER */}
-                {allLeng.length > 0 ? 
+                {allLeng?.length > 0 ? 
                     <section className="">
                         <h2 className='hover:text-secondary-ceo-600/20 text-secondary-ceo-300 mb-4' tabIndex={0}>{t("ceo.info.section.slider.h2")}: </h2>
                         <SliderTechs data={allLeng} />
