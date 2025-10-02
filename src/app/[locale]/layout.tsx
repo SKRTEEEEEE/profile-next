@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { cn, gradients } from "@/lib/utils";
 import { Inter as FontSans } from "next/font/google";
 import { routing } from "@/lib/i18n/routing";
 import { Toaster } from "@/components/ui/sonner";
@@ -31,6 +31,9 @@ export default async function LocaleLayout({
   // side is the easiest way to get started
   const messages = await getMessages({ locale });
 
+  const randomIndex = Math.floor(Math.random() * gradients.length);
+  const randomGradient = gradients[randomIndex];
+
   return (
     <html suppressHydrationWarning className="scroll-pt-[3.5rem]" lang={locale}>
       <body
@@ -44,12 +47,15 @@ export default async function LocaleLayout({
         >
           <NextIntlClientProvider messages={messages}>
             <div
-             
-              className="h-screen bg-no-repeat bg-gradient-cover-dark"
+              style={{
+                backgroundImage: randomGradient,
+              }}
+              className="h-dvh bg-no-repeat "
             >
-              <div className="w-full fixed flex z-50 justify-center md:top-4">
-              <Navbar/>
-              </div>
+                <div className="backdrop-blur-3xl bg-neutral-100/10 shadow-lg w-full py-1 fixed flex z-50 justify-center">
+                  <Navbar />
+                </div>
+
               <Toaster position="bottom-right" />
               {children}
             </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { GithubIcon, LinkedinIcon, Mail, SatelliteDish } from "lucide-react";
+import { GithubIcon, LibraryBig, LinkedinIcon, Mail, Rss } from "lucide-react";
 
 import {
   NavigationMenu,
@@ -18,57 +18,21 @@ import { creatorData } from "@/lib/data";
 import LocalSwitcher from "./local-switch";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 import { useTranslations } from "next-intl";
+import { RenderLocalNav } from "./render-local-nav";
+import { cn } from "@/lib/utils";
 
-function Github({ className }: { className?: string }) {
-  return (
-    <NavigationMenuLink className={className} asChild>
-      <Link
-        href={creatorData.githubUrl}
-        target="_blank"
-        className="flex-row items-center gap-2"
-      >
-        <GithubIcon />
-        Github
-      </Link>
-    </NavigationMenuLink>
-  );
-}
-function LinkedIn({ className }: { className?: string }) {
-  return (
-    <NavigationMenuLink className={className} asChild>
-      <Link
-        href={creatorData.linkedin}
-        target="_blank"
-        className="flex-row items-center gap-2"
-      >
-        <LinkedinIcon />
-        LinkedIn
-      </Link>
-    </NavigationMenuLink>
-  );
-}
-function Email({ className }: { className?: string }) {
-  return (
-    <NavigationMenuLink className={className} asChild>
-      <Link
-        href={creatorData.emailTo}
-        target="_blank"
-        className="flex-row items-center gap-2"
-      >
-        <Mail />
-        eMail
-      </Link>
-    </NavigationMenuLink>
-  );
-}
 
 export function Navbar() {
   const pathname = usePathname();
-  const isSmallScreen = useMediaQuery("(max-width: 640px)");
+  const isSmallScreen = useMediaQuery("(max-width: 720px)");
+  const isSmallScrViewport = useMediaQuery("(max-width: 960px)");
   const t = useTranslations("ceo");
+  const proyectosText = t("main.introduction.buttons.view_projects");
+  const techStackText = t("main.introduction.buttons.tech_stack");
+  const estudiosText = t("main.introduction.buttons.studies");
 
   return (
-    <NavigationMenu className="z-50">
+    <NavigationMenu viewport={isSmallScrViewport} className="z-50">
       <NavigationMenuList>
         {pathname !== "/" && (
           <NavigationMenuItem>
@@ -105,7 +69,7 @@ export function Navbar() {
                 </ListItem>
                 <li>
                   <NavigationMenuLink asChild>
-                    <LinkLocale href="/" >
+                    <LinkLocale href="/">
                       <div className="text-sm leading-none font-medium">
                         Desarrollador
                       </div>
@@ -115,77 +79,65 @@ export function Navbar() {
                     </LinkLocale>
                   </NavigationMenuLink>
                 </li>
-                
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
         )}
 
-        {pathname !== "/" ? !isSmallScreen ? (
-          <>
+        {pathname !== "/" ? (
+          !isSmallScreen ? (
+            <>
+              {[
+                { type: "portafolio" as const, text: proyectosText },
+                { type: "info" as const, text: techStackText },
+                { type: "estudios" as const, text: estudiosText },
+              ].map((item) => (
+                <NavigationMenuItem key={item.type}>
+                  
+                    <RenderLocalNav
+                      type={item.type}
+                      config={{ text: item.text, pathname: "" }}
+                      className={cn(navigationMenuTriggerStyle(), "flex flex-row items-center gap-2")}
+                    />
+                </NavigationMenuItem>
+              ))}
+
+            
+            </>
+          ) : (
             <NavigationMenuItem>
-              <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-              <LinkLocale
-              href="/"
-              className=" flex flex-row items-center gap-2"
-            >
-              <div>💻</div>
-              <div className="w-full text-center">
-                {t("main.introduction.buttons.view_projects")}
-              </div>
-            </LinkLocale>
-            </NavigationMenuLink>
+              <NavigationMenuTrigger>
+                <div className="flex items-center gap-2">
+                  <LibraryBig className="h-4 w-4" />
+                  Dev Info
+                </div>
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[250px] gap-3 p-4">
+                  <ListLocalItem
+                    href={"/portafolio"}
+                    title={proyectosText}
+                  >
+                    Principales proyectos realizados por el desarrollador de esta web
+                  </ListLocalItem>
+                  <ListLocalItem
+                    href={"/info"}
+                    title={techStackText}
+                  >
+                    Habilidades técnicas del desarrollador de esta web (stack tecnológico y especialidad)
+                  </ListLocalItem>
+                  <ListLocalItem
+                    href={"/estudios"}
+                    title={estudiosText}
+                  >
+                    Principales estudios realizados por el desarrollador de esta web
+                  </ListLocalItem>
+                  
+                </ul>
+              </NavigationMenuContent>
             </NavigationMenuItem>
-            <NavigationMenuItem>
-              <LinkLocale
-              href="/info"
-              className=" w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-800/70 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
-            >
-              <div>⚙️</div>
-              <div className="w-full text-center">
-                {t("main.introduction.buttons.tech_stack")}
-              </div>
-            </LinkLocale>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Email className={navigationMenuTriggerStyle()} />
-            </NavigationMenuItem>
-          </>
-        ) : (
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>
-              <div className="flex items-center gap-2">
-                <SatelliteDish className="h-4 w-4" />
-                Working
-              </div>
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[250px] gap-3 p-4">
-                <ListItem
-                  href={creatorData.githubUrl}
-                  title="Github"
-                  target="_blank"
-                > 
-                  Repositorios y proyectos open source
-                </ListItem>
-                <ListItem
-                  href={creatorData.linkedin}
-                  title="LinkedIn"
-                  target="_blank"
-                >
-                  Perfil profesional y experiencia
-                </ListItem>
-                <ListItem
-                  href={creatorData.emailTo}
-                  title="Email"
-                  target="_blank"
-                >
-                  Contacto directo por correo
-                </ListItem>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        ):null}
+          )
+        ) : null}
 
         {pathname === "/" && !isSmallScreen ? (
           <>
@@ -203,8 +155,8 @@ export function Navbar() {
           <NavigationMenuItem>
             <NavigationMenuTrigger>
               <div className="flex items-center gap-2">
-                <SatelliteDish className="h-4 w-4" />
-                Social
+                <Rss  className="h-4 w-4" />
+                <span className="hidden min-[500px]:inline-block"> Social</span>
               </div>
             </NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -213,7 +165,7 @@ export function Navbar() {
                   href={creatorData.githubUrl}
                   title="Github"
                   target="_blank"
-                > 
+                >
                   Repositorios y proyectos open source
                 </ListItem>
                 <ListItem
@@ -259,5 +211,67 @@ function ListItem({
         </Link>
       </NavigationMenuLink>
     </li>
+  );
+}
+function ListLocalItem({
+  title,
+  children,
+  href,
+  target = undefined,
+  ...props
+}: React.ComponentPropsWithoutRef<"li"> & { href: "/info"|"/portafolio"|"/estudios"; target?: "_blank" }) {
+  return (
+    <li {...props}>
+      <NavigationMenuLink asChild>
+        <LinkLocale href={href} target={target}>
+          <div className="text-sm leading-none font-medium">{title}</div>
+          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+            {children}
+          </p>
+        </LinkLocale>
+      </NavigationMenuLink>
+    </li>
+  );
+}
+function Github({ className }: { className?: string }) {
+  return (
+    <NavigationMenuLink className={className} asChild>
+      <Link
+        href={creatorData.githubUrl}
+        target="_blank"
+        className="flex-row items-center gap-2 text-sm leading-none font-medium"
+      >
+        <GithubIcon />
+        Github
+      </Link>
+    </NavigationMenuLink>
+  );
+}
+function LinkedIn({ className }: { className?: string }) {
+  return (
+    <NavigationMenuLink className={className} asChild>
+      <Link
+        href={creatorData.linkedin}
+        target="_blank"
+        className="flex-row items-center gap-2 text-sm leading-none font-medium"
+      >
+        <LinkedinIcon />
+        LinkedIn
+      </Link>
+    </NavigationMenuLink>
+  );
+}
+function Email({ className }: { className?: string }) {
+  return (
+    <NavigationMenuLink className={className} asChild>
+      <Link
+        href={creatorData.emailTo}
+        target="_blank"
+        className="flex-row items-center gap-2"
+      >
+        <Mail />
+        eMail
+      </Link>
+    </NavigationMenuLink>
   );
 }

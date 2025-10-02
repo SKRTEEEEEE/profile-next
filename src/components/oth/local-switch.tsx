@@ -38,11 +38,12 @@ export default function LocalSwitcher() {
       <NavigationMenuTrigger>
         <div className="flex items-center gap-2">
           <Languages className="h-4 w-4" />
-          {t("lang")}
+          <span className="hidden min-[500px]:inline-block">{t("lang")}</span>
+          
         </div>
       </NavigationMenuTrigger>
       <NavigationMenuContent >
-        <ul className="grid w-[200px] gap-2 p-4">
+        <ul className="grid w-[250px] gap-2 p-4">
           {languages.map(({ value, label }) => (
             <li
               key={value}
