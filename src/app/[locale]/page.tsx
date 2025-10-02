@@ -1,13 +1,14 @@
-// import { Link } from "@/libs/i18n/routing";
 import { CTypeAnimation } from "@/components/oth/c/type-animation";
 import { CoverParticles } from "@/components/oth/cover-particles";
+import { RenderLocalNav } from "@/components/oth/render-local-nav";
 import { creatorData } from "@/lib/data";
-import { Link as LinkLocale } from "@/lib/i18n/routing";
+import { cn } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 
 export default async function Home() {
   const t = await getTranslations("ceo.main.introduction");
+  const baseCNLocalNav = "w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  rounded-xl hover:shadow-md hover:shadow-white/50"
 
   return (
     <main className="max-h-dvh w-full p-1 md:pb-8 md:pt-12 px-4 sm:px-6 lg:px-8">
@@ -38,44 +39,12 @@ export default async function Home() {
         </div>
 
         <div className="z-20 grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 items-start justify-around max-h-dvh p-6 py-10 xl:pt-24 md:my-auto">
-          {/* Columna 1 */}
+          {/* Columna 1 -- pasar a utilizar RenderLocalNav*/}
           <div className="flex flex-col items-center gap-1 font-semibold md:items-end md:gap-6 order-last md:order-none">
-            <LinkLocale
-              href="/"
-              className=" w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-800/80 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
-            >
-              <div>💻</div>
-              <div className="w-full text-center">
-                {t("buttons.view_projects")}
-              </div>
-            </LinkLocale>
-            <LinkLocale
-              href="/info"
-              className=" w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-800/70 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
-            >
-              <div>⚙️</div>
-              <div className="w-full text-center">
-                {t("buttons.tech_stack")}
-              </div>
-            </LinkLocale>
-            <LinkLocale
-              href="/"
-              className=" w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-800/60 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
-            >
-              <div>🧑‍🎓</div>
-              <div className="w-full text-center">
-                {t("buttons.studies")}
-              </div>
-            </LinkLocale>
-            <LinkLocale
-              href="/"
-              className=" w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-900/60 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
-            >
-              <div>📋</div>
-              <div className="w-full text-center">
-                {t("buttons.cv")}
-              </div>
-            </LinkLocale>
+            <RenderLocalNav type="portafolio" className={cn(baseCNLocalNav,"bg-primary-ceo-800/80 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.view_projects"), pathname: ""}}/>
+            <RenderLocalNav type="info" className={cn(baseCNLocalNav," bg-primary-ceo-800/70 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.tech_stack"), pathname: ""}}/>
+            <RenderLocalNav type="estudios" className={cn(baseCNLocalNav,"bg-primary-ceo-800/60 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.studies"), pathname: ""}}/>
+            <RenderLocalNav type="cv" className={cn(baseCNLocalNav,"bg-primary-ceo-900/60 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.cv"), pathname: ""}}/>
             <Link
               href={creatorData.oldProfileWebUrl}
               target="_blank"
