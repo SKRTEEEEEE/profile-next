@@ -7,7 +7,7 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 
 export default async function Home() {
-  const t = await getTranslations("ceo");
+  const t = await getTranslations("ceo.main.introduction");
 
   return (
     <main className="max-h-dvh w-full p-1 md:pb-8 md:pt-12 px-4 sm:px-6 lg:px-8">
@@ -21,10 +21,10 @@ export default async function Home() {
             {/* Texto de saludo + introducción */}
             <div className="flex gap-6">
               <span className="block text-[clamp(1rem,3vw,2rem)] text-primary-ceo-300">
-                {t("main.introduction.greeting")},
+                {t("greeting")},
               </span>
               <span className="block text-[clamp(1rem,3vw,2rem)] text-primary-ceo-400">
-                {t("main.introduction.introduction")}
+                {t("introduction")}
               </span>
             </div>
 
@@ -46,16 +46,16 @@ export default async function Home() {
             >
               <div>💻</div>
               <div className="w-full text-center">
-                {t("main.introduction.buttons.view_projects")}
+                {t("buttons.view_projects")}
               </div>
             </LinkLocale>
             <LinkLocale
-              href="/"
+              href="/info"
               className=" w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  bg-primary-ceo-800/70 hover:bg-primary-ceo-900/20 rounded-xl hover:shadow-md hover:shadow-white/50"
             >
               <div>⚙️</div>
               <div className="w-full text-center">
-                {t("main.introduction.buttons.tech_stack")}
+                {t("buttons.tech_stack")}
               </div>
             </LinkLocale>
             <LinkLocale
@@ -64,7 +64,7 @@ export default async function Home() {
             >
               <div>🧑‍🎓</div>
               <div className="w-full text-center">
-                {t("main.introduction.buttons.studies")}
+                {t("buttons.studies")}
               </div>
             </LinkLocale>
             <LinkLocale
@@ -73,7 +73,7 @@ export default async function Home() {
             >
               <div>📋</div>
               <div className="w-full text-center">
-                {t("main.introduction.buttons.cv")}
+                {t("buttons.cv")}
               </div>
             </LinkLocale>
             <Link
@@ -83,23 +83,23 @@ export default async function Home() {
             >
               <div>🔸</div>
               <div className="w-full text-center">
-                {t("main.introduction.buttons.old_frontend")}
+                {t("buttons.old_frontend")}
               </div>
             </Link>
           </div>
           {/* Columna 2 + 3 */}
           <div className="flex flex-col justify-center max-w-xl col-span-2 order-first md:order-none">
             <h2 className="h-32 lg:h-44 text-2xl mt-2 leading-tight text-center md:text-left md:text-4xl md:mb-10">
-              {t("main.introduction.developer_title")}, <br />
+              {t("developer_title")}, <br />
               <CTypeAnimation
                 sequence={[
-                  t("main.introduction.type_animation.1"),
+                  t("type_animation.1"),
                   2000,
-                  t("main.introduction.type_animation.2"),
+                  t("type_animation.2"),
                   2000,
-                  t("main.introduction.type_animation.3"),
+                  t("type_animation.3"),
                   2000,
-                  t("main.introduction.type_animation.4"),
+                  t("type_animation.4"),
                   10000,
                 ]}
               />
@@ -109,7 +109,7 @@ export default async function Home() {
               tabIndex={0}
               className="mx-auto mb-2 text-md md:text-xl lg:text-3xl font-bold md:mx-0 md:mb-8"
             >
-              {t("main.introduction.description")}
+              {t("description")}
             </p>
           </div>
         </div>
