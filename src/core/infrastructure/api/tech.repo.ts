@@ -1,8 +1,8 @@
 import { ResFlow } from "@/core/domain/flows/res.type";
-import { ApiBaseRepository } from "./base";
+import { ApiBaseRepository } from "./base.repo";
 
 import { ReadAllParams } from "@/core/domain/entities/tech.type";
-import type { Lib, ReadAllFlattenTechsRes, ReadCategoryTechsRes, TechInterface } from "@/core/application/interface/tech";
+import type { Lib, ReadAllFlattenTechsRes, ReadCategoryTechsRes, TechInterface } from "@/core/application/interface/tech.interface";
 import { FullTechData } from "@/core/domain/entities/tech";
 // src/core/infrastructure/api/tech.repository(-or->service).ts
 export class TechApiRepository

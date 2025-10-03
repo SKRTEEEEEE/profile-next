@@ -3,8 +3,8 @@
 
 import SliderTechs from "@/components/oth/slider-techs";
 import { Button } from "@/components/ui/button";
-import { ReadTechFlattenUseCase } from "@/core/application/usecases/tech";
-import { techApiRepository } from "@/core/infrastructure/api/tech";
+import { ReadTechFlattenUseCase } from "@/core/application/usecases/tech.usecases";
+import { techApiRepository } from "@/core/infrastructure/api/tech.repo";
 // import { readAllTechsC } from "@/core/interface-adapters/controllers/tech/read.controller";
 import { Link as LinkLocale } from "@/lib/i18n/routing";
 import { getTranslations } from "next-intl/server";

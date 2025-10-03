@@ -1,5 +1,5 @@
 import { ResFlow } from "@/core/domain/flows/res.type";
-import type { Lib, ReadAllFlattenTechsRes, ReadCategoryTechsRes, TechInterface } from "@/core/application/interface/tech";
+import type { Lib, ReadAllFlattenTechsRes, ReadCategoryTechsRes, TechInterface } from "@/core/application/interface/tech.interface";
 import { FullTechData } from "@/core/domain/entities/tech";
 
 /** Db */

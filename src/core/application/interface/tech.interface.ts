@@ -8,9 +8,6 @@ export type Fw = TechBase & DBBase & {
 export type Leng = TechBase & DBBase & {
   frameworks?: Fw[];
 }
-
-
-
 export type ReadCategoryTechsRes = {
   dispoFw: { name: string }[];
   dispoLeng: { name: string }[];
@@ -26,7 +23,7 @@ export type ReadAllFlattenTechsRes = ReadCategoryTechsRes &{
  * Exponer el endpoint dinámico /tech/:type donde type es ReadAllParams
  */
 export interface TechInterface {
-  // /** Lee datos de tech según el tipo solicitado (uso genérico, Full por defecto) */
+  /** Lee datos de tech según el tipo solicitado (uso genérico, Full por defecto) */
   // readByType(type: ReadAllParams): Promise<ResFlow<ReadAllFlattenTechsRes>>;
   /** Lee solo DB (lenguajes y frameworks con _id, etc.) */
   readDb(): Promise<ResFlow<Lib[]>>;
