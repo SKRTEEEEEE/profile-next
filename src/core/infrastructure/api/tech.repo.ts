@@ -37,4 +37,6 @@ export class TechApiRepository
 }
 
 // src/core/infrastructure/api/tech.singleton.ts
-export const techApiRepository = new TechApiRepository(process.env.TEST_ENV !== "production" ? "https://kind-creation-production.up.railway.app" : "http://localhost:3000");
+export const techApiRepository = new TechApiRepository(process.env.TEST_ENV !== "development" ? "https://kind-creation-production.up.railway.app" : "http://localhost:3001");
+
+console.log("test_env: ",process.env.TEST_ENV)
