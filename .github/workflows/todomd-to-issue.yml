@@ -1,11 +1,14 @@
 name: Convert todo.md to GitHub Issues
 
+# FIX: error al parse texto direct
+# FEAT: assign-me, label-by-convetional-commit
+
 on:
   push:
     branches-ignore:
       - 'agent/**'
-    # paths:
-    #   - 'todo.md'
+    paths:
+      - 'todo.md'
   pull_request:
     branches-ignore:
       - 'agent/**'
@@ -28,11 +31,11 @@ jobs:
 
       - name: Convert TODO.md to GitHub Issues
         id: todomd-to-issue
-        uses: SKRTEEEEEE/todomd-to-issue
+        uses: SKRTEEEEEE/todomd-to-issue@v0.4.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           todo-file-path: 'todo.md'
-          labels: 'automated,agente666'
+          labels: 'automated,agent666'
           delete-todo-after: 'true'
 
       - name: Show results
