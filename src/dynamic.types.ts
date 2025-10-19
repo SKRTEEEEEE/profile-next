@@ -4,3 +4,4 @@ export type DBBase = {
   updatedAt: string;
 };
 export enum ErrorAppCodes {}
+export type LucideIconNames = string;
