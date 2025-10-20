@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { FullTechData } from '@/core/domain/entities/tech';
 import { useTranslations } from 'next-intl';
-import { createSimpleIconByNameBadge, DynamicSimpleIcon } from '../oth/dyn/dynamic-si';
+import { createSimpleIconByNameBadge, DynamicSimpleIcon } from '@/components/oth/dyn/dynamic-si';
 
 const SliderTechs = ({data}: {data:FullTechData[]}) => {
     const t = useTranslations("ceo.info.section.slider")
