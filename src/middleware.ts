@@ -1,22 +1,14 @@
 import createMiddleware from 'next-intl/middleware';
-import type { NextRequest } from 'next/server';
 import { routing } from './lib/i18n/routing';
 
-// Crear una función que combine el middleware de internacionalización con tu lógica
-const middleware = async (request: NextRequest) => {
-  const i18nMiddleware = createMiddleware(routing);
-  if (request.nextUrl.pathname === '/') {
-    
-
-    return i18nMiddleware(request)
-  }
-
-  // Ejecutar el middleware de internacionalización
-  return i18nMiddleware(request)
-};
+// Create i18n middleware with routing configuration
+const middleware = createMiddleware(routing);
 
 export default middleware;
 
 export const config = {
-  matcher: ['/', '/(de|en|es|ca)/:path*']
+  // Match all pathnames except for
+  // - … if they start with `/api`, `/_next` or `/_vercel`
+  // - … the ones containing a dot (e.g. `favicon.ico`)
+  matcher: ['/', '/(de|en|es|ca)/:path*', '/((?!api|_next|_vercel|.*\\..*).*)']
 };

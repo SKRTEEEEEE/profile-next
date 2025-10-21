@@ -1,25 +1,44 @@
+/**
+ * Static data for the application
+ * Used for studies, creator info, etc.
+ */
+
 export const creatorData = {
-  githubUrl: "https://github.com/SKRTEEEEEE",
-  email: "adanreh.m@gmail.com",
-  emailTo: `mailto:adanreh.m@gmail.com`,
-  twitter: "https://x.com/queen420nft",
-  profileWebUrl: "https://profile-skrt.vercel.app"
-}
+    githubUrl: "https://github.com/SKRTEEEEEE",
+    name: "SKRTEEEEEE",
+    email: "adanreh.m@gmail.com",
+    emailTo: "mailto:adanreh.m@gmail.com",
+    website: "https://profile-skrt.vercel.app",
+    oldProfileWebUrl: "https://profile-skrt.vercel.app",
+    linkedin: "https://www.linkedin.com/in/skrteeeeee/"
+};
 
-const getMetadataSection = (options: {name: string, desc:string}) => {
-  return {
-      name: options.name,
-      url: creatorData.profileWebUrl,
-      description: options.desc,
-      author: "Adan Reh",
-      links:{
-          twitter: creatorData.twitter,
-          github: creatorData.githubUrl,
-          personalSite: creatorData.profileWebUrl
-      }
-  }
-}
-
-export const metadataMain = getMetadataSection({name: "SkrtPage",desc: "Nextjs 15 profile programmer page"})
-export const metadataBlog = getMetadataSection({name: "SkrtBlog",desc: "NextJs 15 exercises blog"})
-export const metadataAdmin = getMetadataSection({name: "SkrtAdmin",desc: "NextJs 15 admin dashboard for the page"})
+export const dataStudiesPage = [
+    {
+        id: 1,
+        institution: "CIEF",
+        date: "30/10/24",
+        badges: [
+            "JavaScript", "HTML", "CSS", "Node.js", "Express.js", "MySQL", "BDD", "OOP", "DOM"
+        ],
+        link: "https://www.grupcief.com/"
+    },
+    {
+        id: 2,
+        institution: "Chainlink",
+        date: "20/01/24",
+        badges: [
+            "Chainlink", "Blockchain", "Solidity", "ERC721", "ERC20", "Blockchain Oracles", "CCIP", "Chainlink Functions"
+        ],
+        link: "https://coinmarketcap.com/currencies/chainlink/"
+    },
+    {
+        id: 3,
+        institution: "Coliseum",
+        date: "19/12/23",
+        badges: [
+            "Python"
+        ],
+        link: "https://www.centrocoliseum.com/"
+    },
+];

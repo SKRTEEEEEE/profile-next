@@ -3,9 +3,7 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { Link as LinkLocale } from '@/lib/i18n/routing';
 import { readProjectsDeployedUC } from '@/core/application/usecases/entities/project';
 import { IntlKey } from '@/core/domain/entities/intl.type';
-import type { ProjectBase } from '@/core/domain/entities/project.d';
-type Project = ProjectBase;
-
+import { Project } from '@/core/application/interface/project.interface';
 
 type SearchParams = Promise<{
   page?: string
@@ -28,11 +26,21 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Sea
   return (
     <main className="w-full min-h-screen flex flex-col items-center justify-center">
       <h1 className="p-4 text-3xl xl:text-4xl font-bold mb-8">{t("ceo.proyectos.main.h1")}</h1>
+      
+      {/* Show message if no projects available */}
+      {mappedProjects.length === 0 && (
+        <div className="text-center p-8">
+          <p className="text-xl text-yellow-500 mb-4">⚠️ No se encontraron proyectos</p>
+          <p className="text-sm text-gray-400">Asegúrate de que el backend (profile-nest) esté corriendo en http://localhost:3001</p>
+          <p className="text-sm text-gray-400">Prueba: <a href="http://localhost:3001/project" target="_blank" className="text-blue-400 underline">http://localhost:3001/project</a></p>
+          <p className="text-sm text-gray-400 mt-2">Revisa la consola del navegador (F12) para más detalles</p>
+        </div>
+      )}
+      
       <ul className="w-11/12 xl:w-9/12 flex flex-col gap-4">
         {currentProjects.map((data: Project) => {
-          // console.debug("data projects: ", data)
           return (
-            <li className="flex justify-between" key={data.nameId}>
+            <li className="flex justify-between" key={data.id}>
               <h2 className='text-md xl:text-2xl'>{data.title[locale as IntlKey]}</h2>
               <div className='flex'>
                 {data?.openSource &&
@@ -60,7 +68,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Sea
                 <LinkLocale 
                   className='px-2 py-1 border-2 border-primary-ceo-200 rounded-md bg-secondary-ceo-400/30 
                   hover:bg-secondary-ceo-600 hover:border-primary-ceo-400/80' 
-                  href={{ pathname: `/ceo/proyectos/[id]`, params: { id: data.id } }}>
+                  href={{ pathname: `/proyectos/[id]` as `/proyectos/[id]`, params: { id: data.id } }}>
                   {t("ceo.proyectos.main.ul.buttons.url_project.0")} 
                   <span className="hidden lg:inline mr-4"> {t("ceo.proyectos.main.ul.buttons.url_project.1")}</span>➡️
                 </LinkLocale>
@@ -72,7 +80,6 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Sea
         )}
       </ul>
       <div className="mt-8 flex gap-4">
-
         <button
           className={`px-4 py-2 rounded ${currentPage === 1 ? 'bg-danger/10 text-primary-ceo-100/30 cursor-not-allowed' : 'border-secondary-ceo-200/80 hover:border-secondary-ceo-300 border-2 bg-primary-ceo-500/40 hover:bg-primary-ceo-800/80 text-primary-ceo-100'
             }`}
@@ -82,7 +89,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Sea
             currentPage !== 1 ?
               <LinkLocale
                 className={currentPage === 1 ? "cursor-not-allowed" : ""}
-                href={{ pathname: `/ceo/proyectos`, query: { page: (currentPage - 1) } }}>
+                href={{ pathname: `/proyectos` as `/proyectos`, query: { page: (currentPage - 1).toString() } }}>
                 {t("common.previous")}</LinkLocale> : t("common.previous")}
         </button>
 
@@ -95,7 +102,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Sea
             currentPage !== totalPages ?
               <LinkLocale
                 className={currentPage === 1 ? "cursor-not-allowed" : ""}
-                href={{ pathname: `/ceo/proyectos`, query: { page: (currentPage + 1) } }}>
+                href={{ pathname: `/proyectos` as `/proyectos`, query: { page: (currentPage + 1).toString() } }}>
                 {t("common.next")}</LinkLocale> : t("common.next")}
         </button>
       </div>
