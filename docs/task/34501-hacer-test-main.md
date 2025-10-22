@@ -1,3 +1,4 @@
+# REFACTOR: Hacer test main page #34501
 ## Objetivo
 Hacer test en la pagina principal para analizar porque tiene tan mala performance y mejorarla sin modificar los estilos ni la UI
 ## Key points

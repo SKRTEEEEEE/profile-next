@@ -7,8 +7,15 @@ export default defineConfig({
   retries: 2,                  // Reintentos si falla
   outputDir: "docs/test-results",
   use: {
+    baseURL: 'http://localhost:3000',  // Base URL para los tests
     headless: true,            // Ejecutar en headless
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
+  },
+  webServer: {
+    command: 'npm run dev',
+    url: 'http://localhost:3000',
+    reuseExistingServer: !process.env.CI,
+    timeout: 120000,
   },
 });
