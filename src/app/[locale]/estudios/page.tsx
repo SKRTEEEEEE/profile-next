@@ -1,3 +1,4 @@
+import CounterServices from "@/components/ceo/counter-services";
 import TimeLine, { DataTimeLine } from "@/components/ceo/time-line";
 import { getTranslations } from "next-intl/server";
 
@@ -45,6 +46,8 @@ const StudiesPage = async () => {
 
     return (
         <main className="min-sm:max-h-dvh max-w-dvw">
+    
+
             <div className="pt-24 gap-4 flex flex-col ">
                 <span className="mx-6 min-sm:pt-2 max-sm:bg-blend-luminosity max-sm:h-[25dvh]">
                     <h1 tabIndex={0} className="text-2xl leading-tight text-center md:text-left md:text-5xl md:mt-10">
@@ -53,6 +56,8 @@ const StudiesPage = async () => {
                         </span>
                         {' '}{t("estudios.h1.1")}
                     </h1>
+
+                    <CounterServices />
                 </span>
 
                 <div className="relative max-sm:h-[75dvh] overflow-hidden">
