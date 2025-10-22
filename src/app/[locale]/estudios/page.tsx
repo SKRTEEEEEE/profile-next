@@ -48,7 +48,7 @@ const StudiesPage = async () => {
         <main className="min-sm:max-h-dvh max-w-dvw">
     
 
-            <div className="pt-24 gap-4 flex flex-col ">
+            <div className="pt-24 xl:pt-4 gap-4 flex flex-col ">
                 <span className="mx-6 min-sm:pt-2 max-sm:bg-blend-luminosity max-sm:h-[25dvh]">
                     <h1 tabIndex={0} className="text-2xl leading-tight text-center md:text-left md:text-5xl md:mt-10">
                         <span className="font-bold text-secondary-ceo">
