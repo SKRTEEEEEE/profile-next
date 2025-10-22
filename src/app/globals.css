@@ -11,6 +11,7 @@
   --color-info: #3585d4;
 
   /* Primary CEO */
+  --color-primary-ceo: #75f4f4;
   --color-primary-ceo-50: #f6fefe;
   --color-primary-ceo-100: #e7fdfd;
   --color-primary-ceo-200: #d0fbfb;
@@ -24,6 +25,7 @@
   --color-primary-ceo-950: #021313;
 
   /* Secondary CEO */
+  --color-secondary-ceo: #af2bbf;
   --color-secondary-ceo-50: #fcf7fd;
   --color-secondary-ceo-100: #f9eafa;
   --color-secondary-ceo-200: #f2d5f6;
@@ -37,6 +39,7 @@
   --color-secondary-ceo-950: #0f0411;
 
   /* Neutral */
+  --color-neutral: #131424;
   --color-neutral-50: #f8f9fb;
   --color-neutral-100: #eeeff6;
   --color-neutral-200: #dedfed;

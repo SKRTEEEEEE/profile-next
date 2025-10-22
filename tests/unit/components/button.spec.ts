@@ -32,7 +32,6 @@ test.describe("Button Component Unit Tests", () => {
 
   test("should be clickable", async ({ page }) => {
     const button = page.locator("#test-button");
-    let clicked = false;
     
     await page.evaluate(() => {
       document.getElementById("test-button")?.addEventListener("click", () => {
@@ -41,7 +40,7 @@ test.describe("Button Component Unit Tests", () => {
     });
     
     await button.click();
-    clicked = await page.evaluate(() => (window as Window & { buttonClicked?: boolean }).buttonClicked);
+    const clicked = await page.evaluate(() => (window as Window & { buttonClicked?: boolean }).buttonClicked ?? false);
     expect(clicked).toBe(true);
   });
 
