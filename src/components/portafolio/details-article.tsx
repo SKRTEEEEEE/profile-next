@@ -1,8 +1,8 @@
 import { useLocale } from "next-intl";
 import { IntlKey } from "@/core/domain/entities/intl.type";
 import { cn } from "@/lib/utils"
-import { KeyProject, TechProject } from "@/core/domain/entities/project";
 import { DynamicLucideIcon, LucideIconNames } from "@/components/oth/dyn/dynamic-lucide";
+import type { Project } from "@/core/application/interface/project.interface";
 
 interface CustomBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
@@ -41,11 +41,9 @@ function FeatureCard({ title, desc, icon }: FeatureCardProps) {
   )
 }
 
-export type KeyCardProjectProps =  KeyProject<LucideIconNames>
-
 type DetailsArticlePortafolioProps = {
-  techs: TechProject[]
-  keys: KeyCardProjectProps[]
+  techs: Project["techs"]
+  keys: Project["keys"]
   title: {
     char: string
     tech: string

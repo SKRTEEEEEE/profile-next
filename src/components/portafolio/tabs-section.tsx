@@ -9,8 +9,7 @@ import { DynamicLucideIcon, LucideIconNames } from "@/components/oth/dyn/dynamic
 import { useReducer } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { IntlKey } from "@/core/domain/entities/intl.type";
-import type { ProjectBase } from "@/core/domain/entities/project.d";
-type Project = ProjectBase;
+import type { Project } from "@/core/application/interface/project.interface";
 
 // style layout
 type ContentLayoutProps = {
@@ -90,14 +89,13 @@ export function TabsSectionPortafolio({selectedProjects}: {selectedProjects: Pro
     projectData: selectedProjects[selectedProjects.length-1]
   }
   const [state, dispatch] = useReducer(reducer, initialState)
-  const timeLineProps: DataTimeLine[] = state.projectData.time.map((tim, index) => {
-    const { title,desc,type,techs, ...rest } = tim; // Excluimos 'title'
+  const timeLineProps: DataTimeLine[] = state.projectData.time.map((tim) => {
+    const { title,desc,type,techs, ...rest } = tim;
     return {
-      id: index.toString(),
-      title: tim.title[locale as IntlKey], 
-      desc: tim.desc[locale as IntlKey],
-      subtitle: tim.type.length>1?"fullstack":tim.type[0],
-      badges: tim.techs,
+      title: title[locale as IntlKey], 
+      desc: desc[locale as IntlKey],
+      subtitle: type.length>1?"fullstack":tim.type[0],
+      badges:techs,
       ...rest, 
     };
   });

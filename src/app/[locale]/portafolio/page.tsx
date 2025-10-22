@@ -1,25 +1,10 @@
 import { TabsSectionPortafolio } from "@/components/portafolio/tabs-section";
-
-import { readExampleProjectsUC } from "@/core/application/usecases/entities/project"; //should create
+import { readExampleProjectsUC } from "@/core/application/usecases/entities/project";
 import { getTranslations } from "next-intl/server";
-
-
 
 const PortfolioPage = async () => {
     const t = await getTranslations("ceo")
     const exProjects = await readExampleProjectsUC()
-
-    // Log para debugging
-    console.log("📊 Portafolio - Proyectos recibidos:", exProjects.length);
-    if (exProjects.length > 0) {
-        console.log("📊 Primer proyecto:", {
-            nameId: exProjects[0].nameId,
-            hasTitle: Object.keys(exProjects[0].title || {}).length > 0,
-            hasDesc: Object.keys(exProjects[0].desc || {}).length > 0,
-            hasTime: (exProjects[0].time || []).length,
-            hasKeys: (exProjects[0].keys || []).length
-        });
-    }
 
     return (
         <main>
