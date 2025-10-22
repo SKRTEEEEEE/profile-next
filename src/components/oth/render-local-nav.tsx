@@ -1,5 +1,8 @@
+"use client";
+
 import { ReactNode } from "react";
 import { Link } from "@/lib/i18n/routing";
+import { useLocale } from "next-intl";
 
 export function RenderLocalNav({
   type,
@@ -14,6 +17,8 @@ export function RenderLocalNav({
   className?: string;
   children?: ReactNode; 
 }) {
+  const locale = useLocale();
+  
   let pathname: "/estudios" | "/info" | "/portafolio" | "/" ; 
   let icon: string;
 
@@ -38,6 +43,23 @@ export function RenderLocalNav({
       pathname = "/";
       icon = "❓";
       break;
+  }
+
+  // Manejo especial para el CV: abrir PDF en nueva pestaña
+  if (type === "cv") {
+    const handleCvClick = () => {
+      // Mapear 'ca' (catalán) a 'es' (español)
+      const cvLocale = locale === "ca" ? "es" : locale;
+      const cvUrl = `/cv/adan-reh-cv-${cvLocale}.pdf`;
+      window.open(cvUrl, "_blank");
+    };
+
+    return (
+      <button onClick={handleCvClick} className={className}>
+        <div>{icon}</div>
+        <div className="w-full text-center">{config.text}</div>
+      </button>
+    );
   }
 
   return (
