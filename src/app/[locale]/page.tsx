@@ -1,4 +1,4 @@
-import { CTypeAnimation } from "@/components/oth/c/type-animation";
+import { CTypeAnimationOptimized } from "@/components/oth/c/type-animation-optimized";
 import { CoverParticles } from "@/components/oth/cover-particles";
 import { RenderLocalNav } from "@/components/oth/render-local-nav";
 import { creatorData } from "@/lib/data";
@@ -60,7 +60,7 @@ export default async function Home() {
           <div className="flex flex-col justify-center max-w-xl col-span-2 order-first md:order-none">
             <h2 className="h-32 lg:h-44 text-2xl mt-2 leading-tight text-center md:text-left md:text-4xl md:mb-10">
               {t("developer_title")}, <br />
-              <CTypeAnimation
+              <CTypeAnimationOptimized
                 sequence={[
                   t("type_animation.1"),
                   2000,

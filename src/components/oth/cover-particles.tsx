@@ -9,11 +9,22 @@ export const CoverParticles = () => {
     const [init, setInit] = useState(false);
 
     useEffect(() => {
-        initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-        }).then(() => {
-            setInit(true);
-        });
+        // Use requestIdleCallback to defer particles loading until browser is idle
+        // This prevents blocking the main thread and improves LCP
+        const loadParticles = () => {
+            initParticlesEngine(async (engine) => {
+                await loadSlim(engine);
+            }).then(() => {
+                setInit(true);
+            });
+        };
+
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadParticles);
+        } else {
+            // Fallback for browsers without requestIdleCallback
+            setTimeout(loadParticles, 1000);
+        }
     }, []);
 
     return (
@@ -22,7 +33,7 @@ export const CoverParticles = () => {
             <Particles
                 id="tsparticles"
                 options={{
-                    fpsLimit: 120,
+                    fpsLimit: 60, // Reduced from 120 to 60 for better performance
                     interactivity: {
                         events: {
                             onClick: {
@@ -36,7 +47,7 @@ export const CoverParticles = () => {
                         },
                         modes: {
                             push: {
-                                quantity: 4,
+                                quantity: 2, // Reduced from 4 to 2
                             },
                             repulse: {
                                 distance: 200,
@@ -69,7 +80,7 @@ export const CoverParticles = () => {
                             density: {
                                 enable: true,
                             },
-                            value: 80,
+                            value: 40, // Reduced from 80 to 40 for better performance
                         },
                         opacity: {
                             value: 0.5,
