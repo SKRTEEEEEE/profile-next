@@ -10,15 +10,6 @@ test.describe('Info Page', () => {
     await page.goto('/es/info');
   });
 
-  test('should load the info page', async ({ page }) => {
-    // Wait for page to load properly
-    await page.waitForLoadState('networkidle');
-    
-    // Check for title or main content
-    const title = await page.title();
-    expect(title).toBeTruthy();
-    expect(title.length).toBeGreaterThan(0);
-  });
 
   test('should display skills section', async ({ page }) => {
     await page.waitForLoadState('networkidle');

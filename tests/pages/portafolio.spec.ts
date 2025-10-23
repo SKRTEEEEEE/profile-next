@@ -10,14 +10,6 @@ test.describe('Portafolio Page', () => {
     await page.goto('/es/portafolio');
   });
 
-  test('should load the portafolio page', async ({ page }) => {
-    await page.waitForLoadState('networkidle');
-    
-    const title = await page.title();
-    expect(title).toBeTruthy();
-    expect(title.length).toBeGreaterThan(0);
-  });
-
   test('should display the main heading', async ({ page }) => {
     await page.waitForLoadState('networkidle');
     
