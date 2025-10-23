@@ -8,6 +8,7 @@ type Props = {
 
 export const CTypeAnimationOptimized = ({ sequence }: Props) => {
   const [mounted, setMounted] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [TypeAnimation, setTypeAnimation] = useState<any>(null);
 
   useEffect(() => {

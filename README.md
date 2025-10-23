@@ -180,32 +180,32 @@ Content is managed through JSON files located in `content/data/[locale]/`.
 
 ## 🧪 Testing
 
-### Run All Tests
+This project uses **Playwright** for comprehensive testing including unit, component, integration, API, and E2E tests.
+
+### Quick Start
 
 ```bash
+# Run all tests (requires dev server running on localhost:3000)
 npm run test
+
+# Run only unit tests (no server required)
+npx playwright test --project=unit
 ```
 
-### Run Specific Tests
+### Important Notes
 
-```bash
-# E2E tests only
-npx playwright test tests/e2e
+- **Most tests require the dev server**: Run `npm run dev` in a separate terminal before executing tests
+- **Test organization**: Tests are organized by type (unit, component, pages, integration, api, e2e)
+- **Coverage reports**: Generated automatically in `docs/test-results/`
 
-# Unit tests only
-npx playwright test tests/unit
+📖 **For detailed testing documentation, see [docs/test.md](docs/test.md)**
 
-# With UI
-npx playwright test --ui
-```
-
-### Test Coverage
-
-```bash
-npm run coverage
-```
-
-Coverage reports are generated in the `.nyc_output` directory.
+The test documentation includes:
+- Complete test structure and organization
+- Prerequisites for each test type
+- How to run different test categories
+- Troubleshooting common issues
+- Performance metrics and expectations
 
 ---
 
