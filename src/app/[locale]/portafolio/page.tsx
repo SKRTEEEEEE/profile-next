@@ -10,7 +10,7 @@ const PortfolioPage = async () => {
         <main>
             <h1 className="flex max-sm:flex-wrap gap-2 absolute top-[15%] sm:top-[5vh] sm:left-20 max-sm:pl-8 text-wrap sm:text-4xl font-bold ">
                 <span className="text-primary-ceo-500">{t("portafolio.h1.0")}</span>
-                <span className="text-secondary-ceo-500">{t("portafolio.h1.1")}</span>
+                <span className="text-secondary-ceo-300">{t("portafolio.h1.1")}</span>
                 <span className="text-primary-ceo-300">{t("portafolio.h1.2")}</span>
             </h1>
             

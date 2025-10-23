@@ -27,8 +27,8 @@ const AboutMePage = async () => {
 
                     
                     <span className="md:inline hidden">
-                    <h1 tabIndex={0} className="text-xl mb-4   leading-tight text-center sm:text-left md:text-4xl md:mb-2">{t("ceo.info.section.skills.h1.0")} <span className="font-bold text-secondary-ceo"> {t("ceo.info.section.skills.h1.1")}.</span></h1>
-                    <h2 className='hover:text-secondary-ceo-600/20 text-secondary-ceo-300 md:mb-4'>{t("ceo.info.section.skills.h2")}: </h2>
+                    <h1 tabIndex={0} className="text-xl mb-4   leading-tight text-center sm:text-left md:text-4xl md:mb-2">{t("ceo.info.section.skills.h1.0")} <span className="font-bold text-primary-ceo"> {t("ceo.info.section.skills.h1.1")}.</span></h1>
+                    <h2 className='hover:text-secondary-ceo-600/80 text-secondary-ceo-200 md:mb-4'>{t("ceo.info.section.skills.h2")}: </h2>
                     <ul className="md:mb-3 xl:text-xl 
                     text-gray-300">
                         <li className="p-1 px-4 mb-2 border-secondary-ceo/10 border-4 rounded-md">
@@ -48,7 +48,7 @@ const AboutMePage = async () => {
                 {/* SLIDER */}
                 {allLeng?.length > 0 ? 
                     <section className="">
-                        <h2 className='hover:text-secondary-ceo-600/20 text-secondary-ceo-300 mb-4' tabIndex={0}>{t("ceo.info.section.slider.h2")}: </h2>
+                        <h2 className='hover:text-secondary-ceo-600/40 text-2xl text-primary-ceo-300 mb-4' tabIndex={0}>{t("ceo.info.section.slider.h2")}: </h2>
                         <SliderTechs data={allLeng} />
                     </section> 
                 :

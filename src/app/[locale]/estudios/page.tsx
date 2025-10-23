@@ -45,25 +45,26 @@ const StudiesPage = async () => {
     }))
 
     return (
-        <main className="min-sm:max-h-dvh max-w-dvw">
+        <main className="max-h-dvh max-w-dvw">
     
 
-            <div className="pt-24 xl:pt-4 gap-4 flex flex-col ">
+            <div className="max-h-dvh pt-24 xl:pt-4 gap-4 flex flex-col ">
                 <span className="mx-6 min-sm:pt-2 max-sm:bg-blend-luminosity max-sm:h-[25dvh]">
                     <h1 tabIndex={0} className="text-2xl leading-tight text-center md:text-left md:text-5xl md:mt-10">
-                        <span className="font-bold text-secondary-ceo">
+                        <span className="font-bold text-primary-ceo-500/70 hover:text-primary-ceo/80">
                             {t("estudios.h1.0")}
                         </span>
-                        {' '}{t("estudios.h1.1")}
+                        <span className="text-secondary-ceo-200">
+                        {' '}{t("estudios.h1.1")}</span>
                     </h1>
 
                     <CounterServices />
                 </span>
 
-                <div className="relative max-sm:h-[75dvh] overflow-hidden">
+                <div className="relative h-[75dvh] overflow-hidden">
                     {/* Degradado en la parte superior e inferior para efecto de desvanecimiento */}
-                    <div className="sm:hidden pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-violet-400/20 to-transparent" />
-                    <div className="sm:hidden pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent" />
+                    <div className="xl:hidden pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-violet-400/20 to-transparent" />
+                    <div className="xl:hidden pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent" />
 
                     {/* Contenedor de TimeLine con overflow y scroll suave */}
                     <div className="h-full mx-12 overflow-y-auto pt-8 max-sm:pb-32 scroll-smooth shadow-lg rounded-lg">

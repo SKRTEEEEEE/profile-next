@@ -32,10 +32,10 @@ const CounterServices = () => {
             {dataCounter.map(({ id, endCounter, lineRight, lineRightMobile }) => (
                 <div key={id} className={`${lineRight && 'ltr'}`}>
                     <h2 tabIndex={0} className={cn(`sm:mt-2 ${lineRight && 'px-2 sm:px-4 border-2 border-transparent md:border-e-gray-100'} ${lineRightMobile && 'border-e-gray-100'}`, id === 2 ? "gap-4 flex md:grid md:gap-0 ml-4" : "")} >
-                        <span className="flex sm:mb-2 text-2xl font-extrabold md:text-4xl text-secondary-ceo">
+                        <span className="flex sm:mb-2 text-2xl font-extrabold md:text-4xl text-primary-ceo-800/60 hover:text-primary-ceo/60">
                             + <CountUp end={endCounter} start={0} duration={5} />
                         </span>
-                        <span className={cn("text-xs sm:text-base uppercase sm:max-w-[100px]", id === 2 ? " max-sm:min-w-full max-sm:mt-2" : "")}>
+                        <span className={cn("text-xs sm:text-base uppercase sm:max-w-[100px] ", id === 2 ? " max-sm:min-w-full max-sm:mt-2" : "")}>
                             {t(`${id}`)}
                         </span>
                     </h2>
