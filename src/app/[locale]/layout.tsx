@@ -45,7 +45,7 @@ export default async function LocaleLayout({
   return (
     <html suppressHydrationWarning className="scroll-pt-[3.5rem]" lang={locale}>
       <body
-        className={cn("bg-background font-sans antialiased", fontSans.variable)}
+        className={cn("max-h-dvh  bg-background font-sans antialiased", fontSans.variable)}
       >
         <ThemeProvider
           attribute="class"

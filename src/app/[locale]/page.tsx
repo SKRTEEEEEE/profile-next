@@ -29,7 +29,7 @@ export default async function Home() {
               </span>
             </div>
 
-            <span className="block xl:mt-0 sm:mt-2 text-5xl md:text-6xl lg:text-7xl leading-tight">
+            <span className="block xl:mt-0 sm:mt-2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
               Adan Reh Mañach
             </span>
             <span className="hidden xl:inline-block text-7xl hover:animate-caret-blink origin-bottom-left ">
