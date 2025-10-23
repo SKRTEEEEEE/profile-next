@@ -314,7 +314,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 **Adan Reh Mañach**
 
 - GitHub: [@SKRTEEEEEE](https://github.com/SKRTEEEEEE)
-- Portfolio: [View Portfolio](https://profile-next.vercel.app/)
+- Portfolio: [View THIS Portfolio](https://profile-next-kappa.vercel.app/)
+- Portfolio: [View OG Portfolio](https://profile-skrt.vercel.app/)
 
 ---
 
