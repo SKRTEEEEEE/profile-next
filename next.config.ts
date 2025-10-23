@@ -9,6 +9,16 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  // Performance optimizations
+  experimental: {
+    optimizePackageImports: ['react-icons', 'lucide-react', '@tsparticles/react'], // Reduce bundle size
+  },
+  // Enable compression
+  compress: true,
+  // Optimize images
+  images: {
+    formats: ['image/webp', 'image/avif'],
+  },
 };
  
 const withNextIntl = createNextIntlPlugin("./src/lib/i18n/request.ts");

@@ -1,6 +1,6 @@
-import { CTypeAnimationOptimized } from "@/components/oth/c/type-animation-optimized";
 import { CoverParticles } from "@/components/oth/cover-particles";
 import { RenderLocalNav } from "@/components/oth/render-local-nav";
+import { StaticTextWithAnimation } from "@/components/oth/static-text-with-animation";
 import { creatorData } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
@@ -21,15 +21,15 @@ export default async function Home() {
           >
             {/* Texto de saludo + introducción */}
             <div className="flex gap-6">
-              <span className="block text-[clamp(1rem,3vw,2rem)] text-primary-ceo-300">
+              <span className="block text-base md:text-xl lg:text-2xl text-primary-ceo-300">
                 {t("greeting")},
               </span>
-              <span className="block text-[clamp(1rem,3vw,2rem)] text-primary-ceo-400">
+              <span className="block text-base md:text-xl lg:text-2xl text-primary-ceo-400">
                 {t("introduction")}
               </span>
             </div>
 
-            <span className="block xl:mt-0 sm:mt-2 text-[clamp(2.5rem,10vw,5rem)] leading-tight">
+            <span className="block xl:mt-0 sm:mt-2 text-5xl md:text-6xl lg:text-7xl leading-tight">
               Adan Reh Mañach
             </span>
             <span className="hidden xl:inline-block text-7xl hover:animate-caret-blink origin-bottom-left ">
@@ -60,7 +60,8 @@ export default async function Home() {
           <div className="flex flex-col justify-center max-w-xl col-span-2 order-first md:order-none">
             <h2 className="h-32 lg:h-44 text-2xl mt-2 leading-tight text-center md:text-left md:text-4xl md:mb-10">
               {t("developer_title")}, <br />
-              <CTypeAnimationOptimized
+              <StaticTextWithAnimation
+                staticText={t("type_animation.1")}
                 sequence={[
                   t("type_animation.1"),
                   2000,
@@ -71,6 +72,7 @@ export default async function Home() {
                   t("type_animation.4"),
                   10000,
                 ]}
+                className="text-secondary-ceo-500 font-bold w-full"
               />
             </h2>
 

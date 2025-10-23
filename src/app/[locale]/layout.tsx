@@ -9,7 +9,15 @@ import { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
 import { Navbar } from "@/components/oth/navbar";
 
-const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
+// Optimize font loading for better LCP
+const fontSans = FontSans({ 
+  subsets: ["latin"], 
+  variable: "--font-sans",
+  display: 'swap', // Use swap for faster text display
+  preload: true,
+  fallback: ['system-ui', 'arial', 'sans-serif'],
+  adjustFontFallback: true, // Reduce layout shift
+});
 
 interface LocaleLayoutProps {
   children: ReactNode;
