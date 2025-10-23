@@ -38,7 +38,7 @@ const AboutMePage = async () => {
                     </ul>
                     </span>
                     <div className="space-y-2 flex flex-col w-full">
-                        <Button className="w-full" variant={"secondary"}><LinkLocale href={"/"}>{t("ceo.info.section.skills.buttons.tech")}</LinkLocale></Button>
+                        <Button className="w-full" variant={"secondary"}><LinkLocale href={{ pathname: "/docs/[slug]", params: { slug: "techs" } }}>{t("ceo.info.section.skills.buttons.tech")}</LinkLocale></Button>
                         <Button variant={"outline"} className="w-full"><Link href={"https://profile-skrt.vercel.app/ca/admin/techs"}>{t("ceo.info.section.skills.buttons.admin")}</Link></Button>
                     </div>
 
