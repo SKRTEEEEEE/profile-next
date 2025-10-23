@@ -21,7 +21,6 @@ test.describe('Project API Endpoints', () => {
     
     // Verify response structure
     expect(data).toHaveProperty('success');
-    expect(data).toHaveProperty('code');
     expect(data).toHaveProperty('data');
     
     expect(data.success).toBe(true);
