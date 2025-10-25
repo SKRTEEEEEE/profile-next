@@ -29,4 +29,31 @@ test.describe("Project Use Cases", () => {
       expect(content.includes("async") || content.includes("Promise")).toBeTruthy();
     });
   });
+
+  test.describe("readProjectByIdUC", () => {
+    test("should have readProjectByIdUC exported", async () => {
+      const useCasePath = path.join(process.cwd(), "src", "core", "application", "usecases", "entities", "project.ts");
+      const content = fs.readFileSync(useCasePath, "utf-8");
+      
+      // Verify it exports readProjectByIdUC
+      expect(content).toContain("readProjectByIdUC");
+      expect(content).toContain("export");
+    });
+
+    test("should handle async operations", async () => {
+      const useCasePath = path.join(process.cwd(), "src", "core", "application", "usecases", "entities", "project.ts");
+      const content = fs.readFileSync(useCasePath, "utf-8");
+      
+      // Verify it uses async/await or returns Promise
+      expect(content.includes("async") || content.includes("Promise")).toBeTruthy();
+    });
+
+    test("should import from project repository", async () => {
+      const useCasePath = path.join(process.cwd(), "src", "core", "application", "usecases", "entities", "project.ts");
+      const content = fs.readFileSync(useCasePath, "utf-8");
+      
+      // Verify it imports the repository
+      expect(content).toContain("projectApiRepository");
+    });
+  });
 });

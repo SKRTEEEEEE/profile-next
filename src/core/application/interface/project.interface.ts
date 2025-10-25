@@ -18,4 +18,5 @@ export type Project = {
 } & DBBase
 export interface ProjectInterface {
     readEjemplo(): Promise<ResFlow<Project[]>>
+    readById(id: string): Promise<ResFlow<Project>>
 }
