@@ -67,7 +67,8 @@ test.describe("Project Detail Page - /proyectos/[id]", () => {
       await page.waitForLoadState("networkidle");
       
       // Tech sections should be visible if project has techs
-      const section = page.locator("section");
+      // Use .first() to avoid strict mode violation (multiple sections may exist)
+      const section = page.locator("section").first();
       await expect(section).toBeVisible();
     }
   });
