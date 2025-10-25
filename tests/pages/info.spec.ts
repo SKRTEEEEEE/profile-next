@@ -99,8 +99,12 @@ test.describe('Info Page', () => {
   test('page should be responsive on desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     
+    // Wait for page to fully load before checking visibility
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000); // Extra buffer for CI
+    
     const mainContent = page.locator('main').first();
-    await expect(mainContent).toBeVisible();
+    await expect(mainContent).toBeVisible({ timeout: 10000 });
   });
 
   test('should display heading with correct structure', async ({ page }) => {

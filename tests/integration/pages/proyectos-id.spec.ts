@@ -67,9 +67,9 @@ test.describe("Project Detail Page - /proyectos/[id]", () => {
       await page.waitForLoadState("networkidle");
       
       // Tech sections should be visible if project has techs
-      // Use .first() to avoid strict mode violation (multiple sections may exist)
-      const section = page.locator("section").first();
-      await expect(section).toBeVisible();
+      // Look for sections inside main content area, excluding notification sections
+      const section = page.locator("main section, article section").filter({ hasNotText: /Notifications|alt\+T/i }).first();
+      await expect(section).toBeVisible({ timeout: 10000 });
     }
   });
 

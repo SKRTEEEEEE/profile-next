@@ -35,10 +35,17 @@ jobs:
         NODE_ENV: production
         NEXT_PUBLIC_API_MOCKING: "enabled"
         PORT: 3000
+    
+    # Wait for server to be ready
+    - name: Wait for server
+      run: npx wait-on http://localhost:3000 --timeout 60000
 
     # Run Playwright tests with coverage
     - name: Run Playwright tests
       run: npm run test:coverage
+      continue-on-error: false
+      env:
+        CI: true
 
     # Upload test report
     - uses: actions/upload-artifact@v4
