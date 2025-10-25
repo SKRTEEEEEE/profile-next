@@ -11,8 +11,7 @@ jobs:
     # Checkout principal + submodules
     - uses: actions/checkout@v5
       with:
-        submodules: recursive  # <- importante para submodules
-        fetch-depth: 0         # <- trae todo el historial
+          submodules: true        # <- trae todo el historial
 
     # Setup Node.js
     - uses: actions/setup-node@v6
