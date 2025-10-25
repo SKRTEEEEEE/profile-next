@@ -9,3 +9,13 @@ export class ReadProjectUseCase {
         return this.repo.readEjemplo()
     }
 }
+
+export class ReadProjectByIdUseCase {
+    private readonly repo: ProjectInterface
+    constructor(repo: ProjectInterface){
+        this.repo = repo
+    }
+    execute(id: string) {
+        return this.repo.readById(id)
+    }
+}

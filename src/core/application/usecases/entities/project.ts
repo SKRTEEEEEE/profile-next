@@ -1,4 +1,4 @@
-import { ReadProjectUseCase } from "../project.usecases";
+import { ReadProjectUseCase, ReadProjectByIdUseCase } from "../project.usecases";
 import { projectApiRepository } from "@/core/infrastructure/api/project.repo";
 
 /**
@@ -34,4 +34,26 @@ export const readProjectsDeployedUC = async () => {
   // The backend API doesn't have a separate endpoint for deployed projects yet
   // So we return all example projects (ejemplo: true)
   return readExampleProjectsUC();
+};
+
+/**
+ * Read project by ID use case
+ * Fetches a single project by its ID from the backend API
+ * @param id - The project ID to fetch
+ * @returns Project or null if not found/error
+ */
+export const readProjectByIdUC = async (id: string) => {
+  try {
+    const result = await new ReadProjectByIdUseCase(projectApiRepository).execute(id);
+    
+    if (!result.success || !result.data) {
+      console.error(`❌ Error reading project with id ${id}`);
+      return null;
+    }
+    
+    return result.data;
+  } catch (error) {
+    console.error(`❌ Exception reading project with id ${id}:`, error);
+    return null;
+  }
 };
