@@ -12,7 +12,7 @@
 
 ## 📋 Overview
 
-**Profile Next** is a professional portfolio website showcasing web development projects, technical skills, studies, and professional experience. Built with cutting-edge technologies and following Clean Architecture principles for maintainability and scalability.
+**Profile Next** is a professional portfolio website showcasing web development projects, technical skills, studies, and professional experience. Built with cutting-edge technologies and following Clean Architecture principles for maintainability and super scalability.
 
 ### ✨ Key Features
 

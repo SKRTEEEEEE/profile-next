@@ -14,7 +14,7 @@ test.describe('Portafolio Page', () => {
     await page.waitForLoadState('networkidle');
     
     const main = page.locator('main');
-    await expect(main).toBeVisible({ timeout: 10000 });git 
+    await expect(main).toBeVisible({ timeout: 10000 });
     
     // Should have some content
     const hasContent = await page.locator('h1, h2, section, article').count();

@@ -4,8 +4,13 @@ export default defineConfig({
   testDir: './tests',
   testMatch: '*.spec.ts',
   timeout: 30000,
-  retries: 2,
+  retries: process.env.CI ? 3 : 2, // More retries in CI
   outputDir: "docs/test-results/artifacts",
+  
+  // Global expect timeout
+  expect: {
+    timeout: process.env.CI ? 10000 : 5000, // Longer timeout in CI
+  },
   
   // Configure projects for different test types
   projects: [

@@ -1,7 +1,7 @@
 name: 👁️‍🗨️ Playwright Tests
 on:
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, master, buildn ]
 
 jobs:
   test:
@@ -35,15 +35,30 @@ jobs:
         NODE_ENV: production
         NEXT_PUBLIC_API_MOCKING: "enabled"
         PORT: 3000
+    
+    # Wait for server to be ready
+    - name: Wait for server
+      run: npx wait-on http://localhost:3000 --timeout 60000
 
-    # Run Playwright tests
+    # Run Playwright tests with coverage
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npm run test:coverage
+      continue-on-error: false
+      env:
+        CI: true
 
     # Upload test report
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
         name: playwright-report
-        path: playwright-report/
+        path: docs/test-results/
+        retention-days: 30
+    
+    # Upload coverage report
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: coverage-report
+        path: docs/coverage/
         retention-days: 30

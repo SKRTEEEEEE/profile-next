@@ -1,0 +1,6 @@
+
+
+echo "🔍 Validating commit message format..."
+npx commitlint --edit "$1"
+
+echo "✅ Commit message follows standard commits!"
