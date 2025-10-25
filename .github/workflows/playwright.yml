@@ -1,7 +1,7 @@
 name: 👁️‍🗨️ Playwright Tests
 on:
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, master, buildn ]
 
 jobs:
   test:
