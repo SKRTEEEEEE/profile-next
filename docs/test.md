@@ -1,448 +1,348 @@
-# 🧪 Testing Documentation
+# Test Documentation
 
-## Descripción General
+## 📋 Table of Contents
 
-Este proyecto utiliza **Playwright** como framework principal de testing, con soporte para tests unitarios, de componentes, de integración, E2E y de API. Los tests están organizados por tipo y requieren diferentes configuraciones según su categoría.
+- [Overview](#overview)
+- [Test Structure](#test-structure)
+- [Available Commands](#available-commands)
+- [Running Tests](#running-tests)
+- [Coverage Requirements](#coverage-requirements)
+- [CI/CD Integration](#cicd-integration)
+- [Troubleshooting](#troubleshooting)
 
----
+## Overview
 
-## 📁 Estructura de Tests
+This project uses **Playwright** for testing with **NYC** for code coverage. Tests are organized by type and some require the development server to be running.
+
+## Test Structure
 
 ```
 tests/
-├── unit/                    # Tests unitarios (no requieren servidor)
-│   ├── core-utils.spec.ts   # Tests para core/utils.ts
-│   ├── lib-utils.spec.ts    # Tests para lib/utils.ts
-│   ├── readme-validation.spec.ts  # Validación del README
-│   ├── usecases/            # Tests de casos de uso
-│   │   └── project.spec.ts
-│   └── components/          # Tests unitarios de componentes
+├── unit/                    # Unit tests (✅ no server required)
+│   ├── core-utils.spec.ts   # Tests for core/utils.ts
+│   ├── lib-utils.spec.ts    # Tests for lib/utils.ts
+│   ├── usecases/            # Use case tests
+│   └── components/          # Component unit tests
 │       └── button.spec.ts
-├── component/               # Tests de rendimiento de componentes (requieren servidor)
+├── api/                     # API tests (✅ no server required)
+│   ├── tech.spec.ts
+│   └── project.spec.ts
+├── component/               # Component tests (⚠️ requires server)
 │   ├── mode-toggle.spec.ts
 │   ├── navbar.spec.ts
 │   ├── slider-techs.spec.ts
-│   ├── ceo-components.spec.ts
 │   ├── pages-performance.spec.ts
-│   └── performance-report.spec.ts
-├── pages/                   # Tests de páginas (requieren servidor)
-│   ├── info.spec.ts
-│   └── portafolio.spec.ts
-├── integration/             # Tests de integración (requieren servidor)
-│   └── usecases.spec.ts
-├── api/                     # Tests de endpoints API (backend externo)
-│   ├── tech.spec.ts
-│   └── project.spec.ts
-├── e2e/                     # Tests End-to-End (requieren servidor)
+│   ├── performance-report.spec.ts
+│   └── ceo-components.spec.ts
+├── pages/                   # Page tests (⚠️ requires server)
+│   ├── portafolio.spec.ts
+│   └── info.spec.ts
+├── integration/             # Integration tests (⚠️ requires server)
+│   ├── usecases.spec.ts
+│   └── pages/
+│       └── proyectos-id.spec.ts
+├── e2e/                     # End-to-end tests (⚠️ requires server)
 │   └── performance/
 │       └── index.spec.ts
-└── utils/                   # Utilidades para tests
+└── utils/                   # Test utilities
     └── url.ts
 ```
 
----
+## Available Commands
 
-## ⚙️ Configuración de Tests
+### Basic Test Commands
 
-### Proyectos de Test
+| Command | Description | Server Required |
+|---------|-------------|-----------------|
+| `npm test` | Run all tests without coverage | Some tests require server |
+| `npm run test:unit` | Run only unit and API tests | ❌ No |
+| `npm run test:server` | Run component, pages, integration, and e2e tests | ✅ Yes |
+| `npm run test:all` | Run all tests | Some tests require server |
 
-Los tests están organizados en 6 proyectos diferentes en `playwright.config.ts`:
+### Coverage Commands
 
-1. **unit** - Tests unitarios sin dependencias externas
-2. **component** - Tests de componentes con servidor local
-3. **pages** - Tests de páginas con servidor local
-4. **integration** - Tests de integración con servidor local
-5. **api** - Tests de API (backend externo)
-6. **e2e** - Tests End-to-End con servidor local
+| Command | Description | Server Required | Coverage Check |
+|---------|-------------|-----------------|----------------|
+| `npm run test:coverage` | Run all tests with coverage report | Some tests require server | ❌ No |
+| `npm run test:coverage:unit` | Run unit tests with coverage check (min 80%) | ❌ No | ✅ Yes |
 
-### Variables de Entorno
+### Other Commands
 
-- `TEST_ENV`: Entorno de testing (`development` o `production`)
-  - **development**: Usa `http://localhost:3001` para API backend
-  - **production**: Usa `https://kind-creation-production.up.railway.app` para API backend
+| Command | Description |
+|---------|-------------|
+| `npm run test:prod` | Run tests against production build |
+| `./run-all-tests.sh` | Execute complete test suite (includes server startup) |
 
----
+## Running Tests
 
-## 🚀 Ejecutar Tests
+### Quick Start
 
-### ⚠️ Prerequisitos IMPORTANTES
-
-**Para la mayoría de tests (component, pages, integration, e2e), es OBLIGATORIO tener el servidor de desarrollo ejecutándose:**
+#### 1. Run Unit Tests (No Server Required)
 
 ```bash
-npm run dev
+npm run test:unit
 ```
 
-El servidor debe estar corriendo en `http://localhost:3000`. Sin él, los tests de componentes, páginas, integración y E2E **FALLARÁN**.
+This runs:
+- ✅ Unit tests (`tests/unit/**`)
+- ✅ API tests (`tests/api/**`)
 
-### Ejecutar Todos los Tests
+**Use this for:**
+- Pre-commit hooks
+- Quick feedback during development
+- CI/CD pipelines (fast)
+
+#### 2. Run Tests That Need Server
 
 ```bash
-npm test
-```
-
-o con coverage:
-
-```bash
-npm run coverage
-```
-
-### Ejecutar Tests por Proyecto
-
-#### 1. Tests Unitarios (NO requieren servidor)
-```bash
-npx playwright test --project=unit
-```
-
-✅ **No requiere servidor** - Estos tests son completamente independientes.
-
-#### 2. Tests de Componentes (REQUIEREN servidor)
-```bash
-# Terminal 1: Servidor
+# Terminal 1: Start the server
 npm run dev
 
-# Terminal 2: Tests
-npx playwright test --project=component
+# Terminal 2: Run server-dependent tests
+npm run test:server
 ```
 
-⚠️ **Requiere servidor en localhost:3000**
+This runs:
+- ⚠️ Component tests (`tests/component/**`)
+- ⚠️ Page tests (`tests/pages/**`)
+- ⚠️ Integration tests (`tests/integration/**`)
+- ⚠️ E2E tests (`tests/e2e/**`)
 
-#### 3. Tests de Páginas (REQUIEREN servidor)
+#### 3. Run Complete Test Suite
+
+Use the automated script that handles everything:
+
 ```bash
-# Terminal 1: Servidor
+bash run-all-tests.sh
+```
+
+This script will:
+1. ✅ Run linting
+2. ✅ Run unit tests
+3. ✅ Check coverage (minimum 80%)
+4. ✅ Build the application
+5. ✅ Start the server automatically
+6. ✅ Run all server-dependent tests
+7. ✅ Stop the server
+8. ✅ Generate coverage report
+
+**On Windows:**
+```bash
+# Using Git Bash
+bash run-all-tests.sh
+
+# Or using WSL
+wsl bash run-all-tests.sh
+```
+
+### Coverage Testing
+
+#### Check Coverage (Unit Tests Only)
+
+```bash
+npm run test:coverage:unit
+```
+
+This command:
+- Runs unit and API tests
+- Generates coverage report
+- **Fails if coverage < 80%**
+- Reports available at `./docs/coverage/index.html`
+
+#### Generate Coverage Report (All Tests)
+
+```bash
+# Start server first
 npm run dev
 
-# Terminal 2: Tests
-npx playwright test --project=pages
+# In another terminal
+npm run test:coverage
 ```
 
-⚠️ **Requiere servidor en localhost:3000**
+This generates a complete coverage report but **does not enforce** the 80% threshold.
 
-#### 4. Tests de Integración (REQUIEREN servidor)
+## Coverage Requirements
+
+### Minimum Coverage: 80%
+
+The project enforces **minimum 80% coverage** for:
+- Lines
+- Statements
+- Functions
+- Branches
+
+### Configuration
+
+Coverage settings are in `.nycrc`:
+
+```json
+{
+  "check-coverage": true,
+  "lines": 80,
+  "statements": 80,
+  "functions": 80,
+  "branches": 80
+}
+```
+
+### Excluded from Coverage
+
+- Test files (`*.spec.ts`, `*.test.ts`)
+- Configuration files
+- `node_modules/`
+- `.next/` build output
+- `tests/` directory
+
+### Coverage Reports
+
+Reports are generated in `./docs/coverage/`:
+- `index.html` - Interactive HTML report
+- `lcov.info` - LCOV format
+- `coverage-summary.json` - JSON summary
+
+## CI/CD Integration
+
+### Pre-commit Hook
+
+Husky runs these checks before each commit:
+
 ```bash
-# Terminal 1: Servidor
-npm run dev
-
-# Terminal 2: Tests
-npx playwright test --project=integration
+# .husky/pre-commit
+1. npm run lint           # ESLint check
+2. npm run test:unit      # Unit tests (no server)
+3. npm run test:coverage:unit  # Coverage check (≥80%)
 ```
 
-⚠️ **Requiere servidor en localhost:3000**
+**Important:** Only unit tests run in pre-commit to keep it fast and server-independent.
 
-#### 5. Tests de API (NO requieren servidor local)
-```bash
-npx playwright test --project=api
-```
+### GitHub Actions
 
-⚠️ **Requiere backend externo** - Por defecto apunta a Railway en producción o localhost:3001 en desarrollo.
+The Playwright workflow (`.github/workflows/playwright.yml`) runs:
 
-#### 6. Tests E2E (REQUIEREN servidor)
-```bash
-# Terminal 1: Servidor
-npm run dev
+1. Install dependencies
+2. Install Playwright browsers
+3. Build production version
+4. Start production server
+5. Run all tests
+6. Upload test reports
 
-# Terminal 2: Tests
-npx playwright test --project=e2e
-```
+**Triggered on:** Pull requests to `main` or `master`
 
-⚠️ **Requiere servidor en localhost:3000**
-
-### Tests en Modo Producción
+### Running Locally Like CI
 
 ```bash
 npm run test:prod
 ```
 
-Esto ejecuta los tests contra el backend de producción en Railway.
+This runs tests against a production build with the same configuration as CI.
 
----
+## Troubleshooting
 
-## 📊 Reportes de Tests
+### ❌ "ECONNREFUSED" or Connection Timeout
 
-### Ubicación de Reportes
+**Problem:** Server is not running
 
-Los reportes se generan en:
-
-```
-docs/test-results/
-├── html-report/                  # Reporte HTML interactivo
-├── test-results.json             # Resultados en JSON
-└── reports/
-    └── component-performance-report.md  # Reporte de rendimiento
-```
-
-### Ver Reporte HTML
-
+**Solution:**
 ```bash
-npx playwright show-report docs/test-results/html-report
-```
-
-### Reporte de Rendimiento
-
-El archivo `component-performance-report.md` contiene:
-- Análisis de tamaño de componentes
-- Tiempos de renderizado
-- Uso de memoria
-- Recomendaciones de optimización
-
----
-
-## 🎯 Categorías de Tests
-
-### 1. Tests Unitarios ✅
-
-**Propósito**: Verificar funciones y componentes aislados  
-**Requiere Servidor**: ❌ NO
-
-**Contenido**:
-- **core/utils**: Funciones matemáticas (`double`, `triple`)
-- **lib/utils**: 
-  - Función `cn()` para merge de clases
-  - Array de `gradients`
-- **Button Component**: Renderizado básico e interacciones
-- **README Validation**: Validación de estructura y contenido del README
-- **Use Cases**: Validación de estructura de archivos
-
-**Estado**: ✅ Todos pasando
-
-### 2. Tests de Componentes ⚡
-
-**Propósito**: Medir rendimiento de componentes  
-**Requiere Servidor**: ✅ SÍ (`http://localhost:3000`)
-
-**Métricas medidas**:
-- Tiempo de renderizado
-- Tiempo de interacción
-- Tamaño de scripts
-- Uso de memoria
-- CLS (Cumulative Layout Shift)
-
-**Componentes testeados**:
-- **ModeToggle**: Rendimiento de cambio de tema
-- **Navbar**: Renderizado y navegación
-- **SliderTechs**: Rendimiento del carrusel Swiper
-- **CoverParticles**: Efectos de partículas
-- **LocalSwitcher**: Selector de idioma
-
-**Umbrales esperados**:
-- Tiempo de renderizado: < 1000ms
-- Tiempo de interacción: < 500ms
-- CLS: < 0.1
-
-### 3. Tests de Páginas 🌐
-
-**Propósito**: Verificar carga y funcionalidad de páginas completas  
-**Requiere Servidor**: ✅ SÍ (`http://localhost:3000`)
-
-**Páginas testeadas**:
-- **Info/About**: Carga de habilidades y tech stack
-- **Portafolio**: Visualización de proyectos
-
-**Verificaciones**:
-- Carga correcta de la página
-- Presencia de elementos principales
-- Responsive design (móvil/desktop)
-- Manejo de errores de API
-
-### 4. Tests de Integración 🔗
-
-**Propósito**: Verificar interacción entre capas (use cases, repositorios, API)  
-**Requiere Servidor**: ✅ SÍ (`http://localhost:3000`)
-
-**Casos testeados**:
-- **Project Use Cases**:
-  - `readExampleProjectsUC`: Lectura de proyectos
-  - `readProjectsDeployedUC`: Proyectos desplegados
-  - Manejo de errores
-- **Tech Use Cases**:
-  - `ReadTechFlattenUseCase`: Lectura de techs
-  - Manejo de datos vacíos/malformados
-- **Repository Layer**:
-  - Construcción de URLs
-  - Manejo de diferentes tipos
-
-### 5. Tests de API 🔌
-
-**Propósito**: Validar endpoints del backend (profile-nest)  
-**Requiere Servidor**: ⚠️ Backend en `localhost:3001` o Railway
-
-**Endpoints testeados**:
-- `GET /tech/db`: Techs desde base de datos
-- `GET /tech/flatten`: Techs aplanadas
-- `GET /tech/cat`: Techs categorizadas
-- `GET /tech/full`: Datos completos de techs
-- `GET /project`: Proyectos de ejemplo
-
-**Verificaciones**:
-- Status 200
-- Estructura de respuesta correcta
-- Propiedades requeridas
-- Tiempo de respuesta < 2s
-
-**⚠️ Nota**: Estos tests pueden fallar si el backend no está disponible.
-
-### 6. Tests E2E 🎭
-
-**Propósito**: Validar flujos completos de usuario  
-**Requiere Servidor**: ✅ SÍ (`http://localhost:3000`)
-
-**Métricas Core Web Vitals**:
-- **LCP** (Largest Contentful Paint): < 2500ms
-- **FID** (First Input Delay): < 100ms
-- **CLS** (Cumulative Layout Shift): < 0.1
-
-**Adicionales**:
-- JavaScript coverage
-- Tiempo de carga total
-- Conteo de recursos
-- Tamaño total de recursos
-
----
-
-## 🐛 Troubleshooting
-
-### Error: "ECONNREFUSED" o timeouts
-
-**Causa**: El servidor de desarrollo no está ejecutándose  
-**Solución**: 
-```bash
+# Start the dev server
 npm run dev
+
+# Or use the automated script
+bash run-all-tests.sh
 ```
 
-### Error: "Cannot use import statement outside a module"
+### ❌ Coverage Below 80%
 
-**Causa**: Problema de configuración de módulos ES  
-**Solución**: Ya corregido en `playwright.config.ts` con configuración de proyectos
+**Problem:** Not enough code is tested
 
-### Error: Tests de API fallan
-
-**Causa**: Backend no disponible en localhost:3001 o Railway  
-**Solución**: 
-- Verificar que profile-nest esté corriendo en desarrollo
-- O ejecutar tests en modo producción: `npm run test:prod`
-
-### Tests son lentos o timeout
-
-**Causa**: Sistema sobrecargado o conexión lenta  
-**Solución**:
-1. Aumentar timeout en `playwright.config.ts`:
-   ```typescript
-   timeout: 60000, // Aumentar de 30000
+**Solution:**
+1. Check which files need more tests:
+   ```bash
+   npm run test:coverage:unit
    ```
-2. Cerrar otras aplicaciones
-3. Ejecutar menos workers: `npx playwright test --workers=2`
+2. Open `./docs/coverage/index.html` to see detailed report
+3. Add tests for uncovered lines/functions
 
-### Las métricas de rendimiento no son esperadas
+### ❌ Tests Timing Out
 
-**Causa**: Normal - depende de recursos del sistema  
-**Factores**:
-- Recursos del sistema
-- Otros procesos ejecutándose
-- Estado de caché del navegador
-- Condiciones de red
+**Problem:** Tests are slow or hanging
 
-**Solución**: Las métricas son indicativas, no absolutas. Úsalas para comparación relativa.
+**Solutions:**
+1. Increase timeout in `playwright.config.ts`:
+   ```typescript
+   timeout: 60000, // Increase from 30000
+   ```
+2. Close other applications
+3. Check server is responding: `curl http://localhost:3000`
 
----
+### ❌ "run-all-tests.sh: command not found"
 
-## 📝 Mejores Prácticas
+**Problem:** Script doesn't have execute permissions
 
-### Antes de Ejecutar Tests
-
-1. ✅ **Servidor corriendo** (para component/pages/integration/e2e)
-2. ✅ **Backend disponible** (para tests de API)
-3. ✅ **Cerrar aplicaciones innecesarias** (para rendimiento consistente)
-4. ✅ **Limpiar cache** si es necesario: `npx playwright clean`
-
-### Durante el Desarrollo
-
-1. Ejecutar tests unitarios frecuentemente (son rápidos)
-2. Ejecutar tests de componentes después de cambios UI
-3. Ejecutar tests E2E antes de commits importantes
-4. Revisar reportes de rendimiento para optimizaciones
-
-### Escritura de Tests
-
-1. **Tests unitarios**: Deben ser independientes y rápidos
-2. **Tests de componentes**: Medir métricas reales, no hardcodear valores
-3. **Tests de páginas**: Ser resilientes a cambios menores de UI
-4. **Tests de integración**: Verificar interacciones, no implementación
-5. **Tests de API**: Mockear cuando sea apropiado
-6. **Tests E2E**: Enfocarse en flujos críticos de usuario
-
----
-
-## 🔄 CI/CD
-
-### GitHub Actions
-
-Los tests se pueden ejecutar en CI/CD con:
-
-```yaml
-- name: Install dependencies
-  run: npm ci
-
-- name: Install Playwright
-  run: npx playwright install --with-deps
-
-- name: Run unit tests
-  run: npx playwright test --project=unit
-
-- name: Build Next.js
-  run: npm run build
-
-- name: Start Next.js
-  run: npm start &
-
-- name: Run all tests
-  run: npm test
-```
-
----
-
-## 📈 Métricas y Coverage
-
-### NYC Coverage
-
-Los reportes de coverage se generan con NYC y están en:
-
-```
-.nyc_output/
-coverage/
-```
-
-### Lighthouse CI
-
-Para auditorías de rendimiento adicionales:
-
+**Solution:**
 ```bash
-npm run lhci
+# On Linux/Mac
+chmod +x run-all-tests.sh
+
+# On Windows (Git Bash)
+bash run-all-tests.sh
 ```
 
-Resultados en `docs/lighthouse-reports/`
+### ❌ Pre-commit Hook Failing
+
+**Problem:** Unit tests or coverage failing before commit
+
+**Solutions:**
+1. Run tests manually to see errors:
+   ```bash
+   npm run test:unit
+   npm run test:coverage:unit
+   ```
+2. Fix failing tests
+3. Ensure coverage ≥ 80%
+
+### ⚠️ Different Results Locally vs CI
+
+**Possible causes:**
+- Different Node.js versions
+- Different environment variables
+- Cache issues
+- Production vs development build
+
+**Solution:**
+```bash
+# Test with production build locally
+npm run build
+npm run start &
+npm run test:prod
+```
+
+## Best Practices
+
+1. **Always run unit tests before committing** (automated by husky)
+2. **Maintain ≥80% coverage** on all new code
+3. **Use the complete test script** before creating a PR:
+   ```bash
+   bash run-all-tests.sh
+   ```
+4. **Run server-dependent tests** before pushing changes that affect UI/components
+5. **Check coverage reports** to identify untested code:
+   ```bash
+   npm run test:coverage:unit
+   open ./docs/coverage/index.html
+   ```
+
+## Summary
+
+| Scenario | Command |
+|----------|---------|
+| Quick check during development | `npm run test:unit` |
+| Pre-commit validation | Automatic via husky |
+| Complete local test suite | `bash run-all-tests.sh` |
+| Check coverage | `npm run test:coverage:unit` |
+| Test specific component (with server) | `npm run dev` then `npm run test:server` |
+| Test like CI/CD | `npm run test:prod` |
 
 ---
 
-## 🎓 Recursos Adicionales
-
-- [Playwright Documentation](https://playwright.dev/)
-- [Next.js Testing](https://nextjs.org/docs/testing)
-- [Web Vitals](https://web.dev/vitals/)
-- [NYC Coverage](https://www.npmjs.com/package/nyc)
-
----
-
-## 📞 Soporte
-
-Para problemas con tests:
-
-1. Verificar que el servidor esté corriendo
-2. Revisar logs de console en reportes
-3. Ejecutar con UI mode: `npx playwright test --ui`
-4. Revisar screenshots en `docs/test-results/`
-
----
-
-**Última actualización**: 2025-10-23  
-**Versión de Playwright**: ^1.55.1  
-**Versión de Node**: >=18.x
+**Need help?** Check the [test README](../tests/README.md) for more details on individual test files.

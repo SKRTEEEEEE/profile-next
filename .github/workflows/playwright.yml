@@ -36,14 +36,22 @@ jobs:
         NEXT_PUBLIC_API_MOCKING: "enabled"
         PORT: 3000
 
-    # Run Playwright tests
+    # Run Playwright tests with coverage
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npm run test:coverage
 
     # Upload test report
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
         name: playwright-report
-        path: playwright-report/
+        path: docs/test-results/
+        retention-days: 30
+    
+    # Upload coverage report
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: coverage-report
+        path: docs/coverage/
         retention-days: 30
