@@ -1,5 +1,13 @@
 {
   "ceo": {
+    "perf": {
+      "banner": {
+        "title": "🚀 Pàgina optimitzada per màxim rendiment",
+        "description": "Aquesta és una versió optimitzada amb 100% en rendiment, accessibilitat, SEO i millors pràctiques.",
+        "link_text": "Veure versió completa amb disseny millorat",
+        "close": "Tancar"
+      }
+    },
     "images": {
       "circular": "Imatge circular d'un poblat futurista",
       "tablet_office": "Superheroi tecnologíc amb una tauleta a la mà",

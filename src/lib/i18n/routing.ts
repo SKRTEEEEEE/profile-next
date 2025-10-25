@@ -14,6 +14,7 @@ export const routing = defineRouting({
   // List of rutes translation
   pathnames: {
     "/":"/",
+    "/perf": "/perf",
     "/proyectos": {
       en: "/projects",
       de: "/projekte",
@@ -32,15 +33,31 @@ export const routing = defineRouting({
       es: "/portafolio",
       ca: "/portafoli"
     },
+    "/portafolio/perf": {
+      en: "/portfolio/perf",
+      de: "/portfolio/perf",
+      es: "/portafolio/perf",
+      ca: "/portafoli/perf"
+    },
     "/info": "/info",
+    "/info/perf": "/info/perf",
     "/estudios": {
       en: "/studies",
       de: "/studien",
       es: "/estudios",
       ca: "/estudis"
     },
+    "/estudios/perf": {
+      en: "/studies/perf",
+      de: "/studien/perf",
+      es: "/estudios/perf",
+      ca: "/estudis/perf"
+    },
     "/docs/[slug]":"/docs/[slug]",
     "/code": "/code",
+    "/code/perf": "/code/perf",
+    "/gradients": "/gradients",
+    "/gradients/perf": "/gradients/perf",
     // "/academia":{
     //   en: "/academy",
     //   de: "/akademie",
