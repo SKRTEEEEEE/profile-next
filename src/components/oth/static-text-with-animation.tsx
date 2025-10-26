@@ -12,7 +12,7 @@ type Props = {
 // Then loads animation after page is idle
 export function StaticTextWithAnimation({ staticText, sequence, className }: Props) {
   const [showAnimation, setShowAnimation] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   const [TypeAnimation, setTypeAnimation] = useState<any>(null);
 
   useEffect(() => {

@@ -43,14 +43,29 @@ export default async function LocaleLayout({
   const randomGradient = gradients[randomIndex];
 
   return (
-    <html suppressHydrationWarning className="scroll-pt-[3.5rem]" lang={locale}>
+    <html suppressHydrationWarning className="scroll-pt-[3.5rem] dark" lang={locale}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const theme = localStorage.getItem('theme-preference') || 'dark';
+                document.documentElement.classList.add(theme);
+              } catch (e) {
+                document.documentElement.classList.add('dark');
+              }
+            `,
+          }}
+        />
+      </head>
       <body
         className={cn("max-h-dvh  bg-background font-sans antialiased", fontSans.variable)}
       >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          disableTransitionOnChange
+          enableSystem={false}
+          storageKey="theme-preference"
         >
           <NextIntlClientProvider messages={messages}>
             <div
