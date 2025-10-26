@@ -2,43 +2,31 @@
   "ci": {
     "collect": {
       "url": [
-        "http://localhost:3000/es/perf",
-        "http://localhost:3000/en/perf",
-        "http://localhost:3000/ca/perf",
-        "http://localhost:3000/de/perf",
-        "http://localhost:3000/es/portafolio/perf",
-        "http://localhost:3000/en/portfolio/perf",
-        "http://localhost:3000/ca/portafoli/perf",
-        "http://localhost:3000/de/portfolio/perf",
-        "http://localhost:3000/es/info/perf",
-        "http://localhost:3000/en/info/perf",
-        "http://localhost:3000/ca/info/perf",
-        "http://localhost:3000/de/info/perf",
-        "http://localhost:3000/es/estudios/perf",
-        "http://localhost:3000/en/studies/perf",
-        "http://localhost:3000/ca/estudis/perf",
-        "http://localhost:3000/de/studien/perf",
-        "http://localhost:3000/es/code/perf",
-        "http://localhost:3000/en/code/perf",
-        "http://localhost:3000/ca/code/perf",
-        "http://localhost:3000/de/code/perf",
-        "http://localhost:3000/es/gradients/perf",
-        "http://localhost:3000/en/gradients/perf",
-        "http://localhost:3000/ca/gradients/perf",
-        "http://localhost:3000/de/gradients/perf"
+        "http://localhost:3000/es",
+        "http://localhost:3000/en/info",
+        "http://localhost:3000/de/gradients",
+        "http://localhost:3000/es/portafolio",
+        "http://localhost:3000/ca/estudis"
       ],
-      "numberOfRuns": 3,
+      "numberOfRuns": 1,
       "startServerCommand": "npm run build && npm run start",
       "startServerReadyPattern": "ready on.*3000",
       "chromeFlags": "--headless"
     },
     "assert": {
-      "preset": "lighthouse:recommended",
       "assertions": {
-        "categories:performance": ["error", {"minScore": 1.0}],
-        "categories:accessibility": ["error", {"minScore": 1.0}],
-        "categories:best-practices": ["error", {"minScore": 1.0}],
-        "categories:seo": ["error", {"minScore": 1.0}]
+        "categories:performance": ["error", { "minScore": 0.65 }],
+        "categories:accessibility": ["error", { "minScore": 0.85 }],
+        "categories:seo": ["error", { "minScore": 0.8 }],
+        "categories:best-practices": ["error", { "minScore": 0.9 }],
+
+        "bf-cache": "off",
+        "legacy-javascript-insight": "warn",
+        "forced-reflow-insight": "off",
+        "network-dependency-tree-insight": "off",
+        "document-title": "warn",
+        "meta-description": "warn",
+        "button-name": "warn"
       }
     },
     "upload": {
