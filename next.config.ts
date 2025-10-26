@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['react-icons', 'lucide-react', '@tsparticles/react'], // Reduce bundle size

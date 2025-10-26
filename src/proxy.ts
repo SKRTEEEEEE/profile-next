@@ -2,9 +2,9 @@ import createMiddleware from 'next-intl/middleware';
 import { routing } from './lib/i18n/routing';
 
 // Create i18n middleware with routing configuration
-const middleware = createMiddleware(routing);
+const proxy = createMiddleware(routing);
 
-export default middleware;
+export default proxy;
 
 export const config = {
   // Match all pathnames except for
