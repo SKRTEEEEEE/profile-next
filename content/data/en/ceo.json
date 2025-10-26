@@ -1,5 +1,13 @@
 {
   "ceo": {
+    "perf": {
+      "banner": {
+        "title": "🚀 Optimized page for maximum performance",
+        "description": "This is an optimized version with 100% in performance, accessibility, SEO and best practices.",
+        "link_text": "View full version with enhanced design",
+        "close": "Close"
+      }
+    },
     "images": {
       "circular": "Circular image of a futuristic village",
       "tablet_office": "Technological superhero with a tablet in hand",

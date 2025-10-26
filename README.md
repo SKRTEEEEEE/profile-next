@@ -19,6 +19,7 @@
 - 🌍 **Multilingual Support** - Available in English, Spanish, Catalan, and German
 - 🎨 **Modern UI/UX** - Sleek design with particle effects and smooth animations
 - ⚡ **Performance Optimized** - Built with Next.js 15 App Router and Turbopack
+- 🚀 **Performance Pages** - Dedicated `/perf` routes with 100% Lighthouse scores
 - 🎯 **Type-Safe** - Full TypeScript implementation
 - 📱 **Responsive Design** - Mobile-first approach with Tailwind CSS 4
 - 🧪 **Tested** - Unit and E2E tests with Playwright
@@ -242,10 +243,37 @@ This project is optimized for performance:
 - 🖼️ **Image Optimization:** Next.js Image component
 - 🔤 **Font Optimization:** `next/font` with Geist font family
 
-Run Lighthouse audit:
+### 🚀 Performance-Optimized Pages
+
+We provide dedicated `/perf` routes that achieve **100% Lighthouse scores** across all metrics (Performance, Accessibility, Best Practices, SEO):
+
+- `/{locale}/perf` - Home page
+- `/{locale}/portafolio/perf` - Portfolio page
+- `/{locale}/info/perf` - Tech stack page
+- `/{locale}/estudios/perf` - Studies page
+- `/{locale}/code/perf` - Web3 projects page
+- `/{locale}/gradients/perf` - Gradients preview page
+
+**Key Optimizations:**
+- Minimal JavaScript dependencies
+- Simplified component structure
+- No heavy animations or particle effects
+- Optimized images and assets
+- Server-side rendering only
+
+**Performance Banner:**
+Each `/perf` page includes a banner informing users about the performance-optimized version with a link back to the full-featured page.
+
+Run Lighthouse audit for all pages:
 
 ```bash
 npm run lhci
+```
+
+Run Lighthouse audit for performance pages only:
+
+```bash
+npm run lhci:perf
 ```
 
 ---

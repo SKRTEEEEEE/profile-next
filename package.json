@@ -15,7 +15,7 @@
     "test:coverage:unit": "nyc --check-coverage playwright test --project=unit --project=api",
     "test:prod": "cross-env TEST_ENV=production npx playwright test",
     "lh:home": "npx lighthouse http://localhost:3000/es --output=json --output=html --output-path=./docs/lighthouse-reports/home.html --chrome-flags='--headless' --no-enable-error-reporting",
-    "lhci": "lhci autorun --config=lighthouserc.json"
+    "lhci:perf": "lhci autorun --config=lighthouserc.perf.json"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",
