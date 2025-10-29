@@ -59,7 +59,7 @@
     "@typescript-eslint/parser": "^8.46.2",
     "cross-env": "^10.1.0",
     "eslint": "^9",
-    "eslint-config-next": "16.0.0",
+    "eslint-config-next": "16.0.1",
     "husky": "^9.1.7",
     "nyc": "^17.1.0",
     "tailwindcss": "^4",
