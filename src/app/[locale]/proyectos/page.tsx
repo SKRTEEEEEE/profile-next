@@ -4,10 +4,39 @@ import { Link as LinkLocale } from '@/lib/i18n/routing';
 import { readProjectsDeployedUC } from '@/core/application/usecases/entities/project';
 import { IntlKey } from '@/core/domain/entities/intl.type';
 import { Project } from '@/core/application/interface/project.interface';
+import { generateMetadata as generateSEOMetadata, generateBreadcrumbSchema } from '@/lib/metadata';
+import { Metadata } from 'next';
 
 type SearchParams = Promise<{
   page?: string
 }>
+
+// Generate metadata for SEO
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = await getTranslations();
+  
+  const titles = {
+    es: 'Proyectos Web - Adan Reh Mañach | Desarrollador Fullstack Barcelona',
+    en: 'Web Projects - Adan Reh Mañach | Fullstack Developer Barcelona',
+    ca: 'Projectes Web - Adan Reh Mañach | Desenvolupador Fullstack Barcelona',
+    de: 'Web-Projekte - Adan Reh Mañach | Fullstack-Entwickler Barcelona',
+  };
+
+  const descriptions = {
+    es: 'Explora mis proyectos web desplegados. Portfolio de desarrollo fullstack con React, Next.js, TypeScript y más tecnologías modernas. Barcelona, España.',
+    en: 'Explore my deployed web projects. Fullstack development portfolio with React, Next.js, TypeScript and modern technologies. Barcelona, Spain.',
+    ca: 'Explora els meus projectes web desplegats. Portafoli de desenvolupament fullstack amb React, Next.js, TypeScript i més tecnologies modernes. Barcelona, Espanya.',
+    de: 'Entdecken Sie meine bereitgestellten Webprojekte. Fullstack-Entwicklungsportfolio mit React, Next.js, TypeScript und modernen Technologien. Barcelona, Spanien.',
+  };
+
+  return generateSEOMetadata({
+    locale: locale as 'es' | 'en' | 'ca' | 'de',
+    title: titles[locale as keyof typeof titles] || titles.es,
+    description: descriptions[locale as keyof typeof descriptions] || descriptions.es,
+    path: '/proyectos',
+  });
+}
 
 export default async function ProjectsPage({ searchParams }: { searchParams: SearchParams }) {
   const projectsPerPage = 4;

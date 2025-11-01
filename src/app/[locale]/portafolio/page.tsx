@@ -1,6 +1,35 @@
 import { TabsSectionPortafolio } from "@/components/portafolio/tabs-section";
 import { readExampleProjectsUC } from "@/core/application/usecases/entities/project";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import { generateMetadata as generateSEOMetadata, generateProfilePageSchema } from "@/lib/metadata";
+import { Metadata } from "next";
+
+// Generate metadata for SEO
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  
+  const titles = {
+    es: 'Portfolio Open Source - Adan Reh Mañach | Desarrollador Barcelona',
+    en: 'Open Source Portfolio - Adan Reh Mañach | Developer Barcelona',
+    ca: 'Portfolio Open Source - Adan Reh Mañach | Desenvolupador Barcelona',
+    de: 'Open-Source-Portfolio - Adan Reh Mañach | Entwickler Barcelona',
+  };
+
+  const descriptions = {
+    es: 'Portfolio de proyectos open source destacados. Ejemplos de desarrollo web con React, Next.js, TypeScript, Node.js y tecnologías modernas. Desarrollador en Barcelona.',
+    en: 'Featured open source projects portfolio. Web development examples with React, Next.js, TypeScript, Node.js and modern technologies. Developer in Barcelona.',
+    ca: 'Portafoli de projectes open source destacats. Exemples de desenvolupament web amb React, Next.js, TypeScript, Node.js i tecnologies modernes. Desenvolupador a Barcelona.',
+    de: 'Portfolio mit ausgewählten Open-Source-Projekten. Webentwicklungsbeispiele mit React, Next.js, TypeScript, Node.js und modernen Technologien. Entwickler in Barcelona.',
+  };
+
+  return generateSEOMetadata({
+    locale: locale as 'es' | 'en' | 'ca' | 'de',
+    title: titles[locale as keyof typeof titles] || titles.es,
+    description: descriptions[locale as keyof typeof descriptions] || descriptions.es,
+    path: '/portafolio',
+    type: 'profile',
+  });
+}
 
 const PortfolioPage = async () => {
     const t = await getTranslations("ceo")
