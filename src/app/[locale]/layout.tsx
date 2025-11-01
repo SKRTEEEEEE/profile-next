@@ -8,6 +8,13 @@ import { Toaster } from "@/components/ui/sonner";
 import { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
 import { Navbar } from "@/components/oth/navbar";
+import { 
+  generateMetadata as generateSEOMetadata, 
+  generatePersonSchema, 
+  generateWebSiteSchema,
+  personalInfo 
+} from "@/lib/metadata";
+import { Metadata } from "next";
 
 // Optimize font loading for better LCP
 const fontSans = FontSans({ 
@@ -22,6 +29,25 @@ const fontSans = FontSans({
 interface LocaleLayoutProps {
   children: ReactNode;
   params: Promise<{ locale: string }>;
+}
+
+// Generate metadata for SEO
+export async function generateMetadata({ params }: LocaleLayoutProps): Promise<Metadata> {
+  const { locale } = await params;
+  
+  const titles = {
+    es: `${personalInfo.name} - Desarrollador Fullstack Barcelona`,
+    en: `${personalInfo.name} - Fullstack Developer Barcelona`,
+    ca: `${personalInfo.name} - Desenvolupador Fullstack Barcelona`,
+    de: `${personalInfo.name} - Fullstack-Entwickler Barcelona`,
+  };
+
+  return generateSEOMetadata({
+    locale: locale as 'es' | 'en' | 'ca' | 'de',
+    title: titles[locale as keyof typeof titles] || titles.es,
+    description: personalInfo.description[locale as keyof typeof personalInfo.description] || personalInfo.description.es,
+    path: '',
+  });
 }
 
 export default async function LocaleLayout({
@@ -42,6 +68,10 @@ export default async function LocaleLayout({
   const randomIndex = Math.floor(Math.random() * gradients.length);
   const randomGradient = gradients[randomIndex];
 
+  // Generate structured data for SEO
+  const personSchema = generatePersonSchema(locale as 'es' | 'en' | 'ca' | 'de');
+  const websiteSchema = generateWebSiteSchema(locale as 'es' | 'en' | 'ca' | 'de');
+
   return (
     <html suppressHydrationWarning className="scroll-pt-[3.5rem] dark" lang={locale}>
       <head>
@@ -56,6 +86,15 @@ export default async function LocaleLayout({
               }
             `,
           }}
+        />
+        {/* JSON-LD Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body

@@ -1,6 +1,34 @@
 import CounterServices from "@/components/ceo/counter-services";
 import TimeLine, { DataTimeLine } from "@/components/ceo/time-line";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import { generateMetadata as generateSEOMetadata } from "@/lib/metadata";
+import { Metadata } from "next";
+
+// Generate metadata for SEO
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  
+  const titles = {
+    es: 'Estudios y Formación - Adan Reh Mañach | Desarrollador Barcelona',
+    en: 'Studies and Training - Adan Reh Mañach | Developer Barcelona',
+    ca: 'Estudis i Formació - Adan Reh Mañach | Desenvolupador Barcelona',
+    de: 'Studien und Ausbildung - Adan Reh Mañach | Entwickler Barcelona',
+  };
+
+  const descriptions = {
+    es: 'Formación y certificaciones en desarrollo web fullstack, blockchain, Python y Big Data. Experiencia en JavaScript, Node.js, React, Solidity y más. Barcelona, España.',
+    en: 'Training and certifications in fullstack web development, blockchain, Python and Big Data. Experience in JavaScript, Node.js, React, Solidity and more. Barcelona, Spain.',
+    ca: 'Formació i certificacions en desenvolupament web fullstack, blockchain, Python i Big Data. Experiència en JavaScript, Node.js, React, Solidity i més. Barcelona, Espanya.',
+    de: 'Ausbildung und Zertifizierungen in Fullstack-Webentwicklung, Blockchain, Python und Big Data. Erfahrung in JavaScript, Node.js, React, Solidity und mehr. Barcelona, Spanien.',
+  };
+
+  return generateSEOMetadata({
+    locale: locale as 'es' | 'en' | 'ca' | 'de',
+    title: titles[locale as keyof typeof titles] || titles.es,
+    description: descriptions[locale as keyof typeof descriptions] || descriptions.es,
+    path: '/estudios',
+  });
+}
 
 const dataStudiesPage = [
     {
