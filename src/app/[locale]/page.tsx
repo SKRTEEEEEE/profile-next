@@ -11,7 +11,7 @@ export default async function Home() {
   const baseCNLocalNav = "w-52 flex items-center px-4 py-2 sm:my-2 transition-all border-2 cursor-pointer text-md  rounded-xl hover:shadow-md hover:shadow-white/50"
 
   return (
-    <main className="max-h-dvh w-full p-1 md:pb-8 md:pt-12 px-4 sm:px-6 lg:px-8" role="main">
+    <main className="max-h-dvh w-full p-1 md:pb-8 md:pt-12 px-4 sm:px-6 lg:px-8">
       <CoverParticles />
       <section className="z-20 select-none w-full" aria-labelledby="hero-heading">
         <header className="flex justify-center w-full">
@@ -41,7 +41,8 @@ export default async function Home() {
 
         <div className="z-20 grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 items-start justify-around max-h-dvh p-6 py-10 xl:pt-24 md:my-auto">
           {/* Navigation Links - Primary Actions */}
-          <nav className="flex flex-col items-center gap-1 font-semibold md:items-end md:gap-6 order-last md:order-none" aria-label="Main navigation">
+          <section className="flex flex-col items-center gap-1 font-semibold md:items-end md:gap-6 order-last md:order-none" aria-labelledby="primary-actions-heading">
+            <h2 id="primary-actions-heading" className="sr-only">{t("buttons.primary_actions") || "Primary Actions"}</h2>
             <RenderLocalNav type="portafolio" className={cn(baseCNLocalNav,"bg-primary-ceo-800/80 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.view_projects"), pathname: ""}}/>
             <RenderLocalNav type="info" className={cn(baseCNLocalNav," bg-primary-ceo-800/70 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.tech_stack"), pathname: ""}}/>
             <RenderLocalNav type="estudios" className={cn(baseCNLocalNav,"bg-primary-ceo-800/60 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.studies"), pathname: ""}}/>
@@ -58,7 +59,7 @@ export default async function Home() {
                 {t("buttons.old_frontend")}
               </div>
             </Link>
-          </nav>
+          </section>
           {/* Main Content - Introduction and Description */}
           <article className="flex flex-col justify-center max-w-xl col-span-2 order-first md:order-none">
             <h2 className="h-32 lg:h-44 text-2xl mt-2 leading-tight text-center md:text-left md:text-4xl md:mb-10">

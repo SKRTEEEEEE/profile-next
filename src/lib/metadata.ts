@@ -120,6 +120,8 @@ export const keywords = {
     'IIoT-Entwickler Barcelona',
     'DevOps-Ingenieur Barcelona',
     'Software-Entwickler Barcelona',
+    'developer Barcelona',
+    'entwickler Barcelona',
   ],
 };
 
