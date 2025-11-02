@@ -46,7 +46,7 @@ test.describe('SEO Metadata - Developer Portfolio', () => {
         // Verify some essential keywords are present
         const keywordsLower = keywordsMeta!.toLowerCase();
         expect(keywordsLower).toContain('barcelona');
-        expect(keywordsLower).toContain('developer' || 'desarrollador');
+        expect(keywordsLower.includes('developer') || keywordsLower.includes('desarrollador')).toBe(true);
       });
 
       test(`should have Open Graph metadata in ${locale}`, async ({ page }) => {
@@ -154,7 +154,8 @@ test.describe('SEO Metadata - Developer Portfolio', () => {
       
       const title = await page.title();
       expect(title).toBeTruthy();
-      expect(title.toLowerCase()).toContain('proyectos' || 'projects' || 'portfolio');
+      const titleLower = title.toLowerCase();
+      expect(titleLower.includes('proyectos') || titleLower.includes('projects') || titleLower.includes('portfolio')).toBe(true);
       
       const description = await page.locator('meta[name="description"]').getAttribute('content');
       expect(description).toBeTruthy();
@@ -175,7 +176,8 @@ test.describe('SEO Metadata - Developer Portfolio', () => {
       
       const title = await page.title();
       expect(title).toBeTruthy();
-      expect(title.toLowerCase()).toContain('portafolio' || 'portfolio');
+      const titleLower = title.toLowerCase();
+      expect(titleLower.includes('portafolio') || titleLower.includes('portfolio')).toBe(true);
       
       const description = await page.locator('meta[name="description"]').getAttribute('content');
       expect(description).toBeTruthy();
@@ -191,7 +193,8 @@ test.describe('SEO Metadata - Developer Portfolio', () => {
       
       const description = await page.locator('meta[name="description"]').getAttribute('content');
       expect(description).toBeTruthy();
-      expect(description!.toLowerCase()).toContain('tech' || 'tecnolog' || 'stack' || 'habilidades');
+      const descLower = description!.toLowerCase();
+      expect(descLower.includes('tech') || descLower.includes('tecnolog') || descLower.includes('stack') || descLower.includes('habilidades')).toBe(true);
     });
   });
 

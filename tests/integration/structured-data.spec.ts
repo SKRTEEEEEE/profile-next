@@ -32,7 +32,7 @@ test.describe('Structured Data Tests', () => {
         
         // Check job title
         expect(data.jobTitle).toBeTruthy();
-        expect(data.jobTitle).toContain('Developer' || 'Desarrollador');
+        expect(data.jobTitle.includes('Developer') || data.jobTitle.includes('Desarrollador')).toBe(true);
         
         // Check location
         expect(data.address).toBeTruthy();
