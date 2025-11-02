@@ -13,9 +13,10 @@ export default async function Home() {
   return (
     <main className="max-h-dvh w-full p-1 md:pb-8 md:pt-12 px-4 sm:px-6 lg:px-8">
       <CoverParticles />
-      <div className="z-20 select-none w-full">
-        <div className="flex justify-center w-full">
+      <section className="z-20 select-none w-full" aria-labelledby="hero-heading">
+        <header className="flex justify-center w-full">
           <h1
+            id="hero-heading"
             tabIndex={0}
             className="mt-6 lg:flex lg:items-center lg:gap-24 relative top-6 font-bold text-left"
           >
@@ -32,15 +33,16 @@ export default async function Home() {
             <span className="block xl:mt-0 sm:mt-2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
               Adan Reh Mañach
             </span>
-            <span className="hidden xl:inline-block text-7xl hover:animate-caret-blink origin-bottom-left ">
+            <span className="hidden xl:inline-block text-7xl hover:animate-caret-blink origin-bottom-left " role="img" aria-label="waving hand">
               👋
             </span>
           </h1>
-        </div>
+        </header>
 
         <div className="z-20 grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 items-start justify-around max-h-dvh p-6 py-10 xl:pt-24 md:my-auto">
-          {/* Columna 1 -- pasar a utilizar RenderLocalNav*/}
-          <div className="flex flex-col items-center gap-1 font-semibold md:items-end md:gap-6 order-last md:order-none">
+          {/* Navigation Links - Primary Actions */}
+          <section className="flex flex-col items-center gap-1 font-semibold md:items-end md:gap-6 order-last md:order-none" aria-labelledby="primary-actions-heading">
+            <h2 id="primary-actions-heading" className="sr-only">{t("buttons.primary_actions") || "Primary Actions"}</h2>
             <RenderLocalNav type="portafolio" className={cn(baseCNLocalNav,"bg-primary-ceo-800/80 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.view_projects"), pathname: ""}}/>
             <RenderLocalNav type="info" className={cn(baseCNLocalNav," bg-primary-ceo-800/70 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.tech_stack"), pathname: ""}}/>
             <RenderLocalNav type="estudios" className={cn(baseCNLocalNav,"bg-primary-ceo-800/60 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.studies"), pathname: ""}}/>
@@ -48,16 +50,18 @@ export default async function Home() {
             <Link
               href={creatorData.oldProfileWebUrl}
               target="_blank"
+              rel="noopener noreferrer"
               className=" w-52 flex items-center justify-between px-4 py-2 my-5 transition-all border shadow-secondary-ceo-900 shadow-sm cursor-pointer text-md text-primary-ceo-200 border-secondary-ceo/10 rounded-xl hover:shadow-xl hover:shadow-secondary-ceo"
+              aria-label="Visit old frontend version (opens in new tab)"
             >
-              <div>🔸</div>
+              <div role="img" aria-hidden="true">🔸</div>
               <div className="w-full text-center">
                 {t("buttons.old_frontend")}
               </div>
             </Link>
-          </div>
-          {/* Columna 2 + 3 */}
-          <div className="flex flex-col justify-center max-w-xl col-span-2 order-first md:order-none">
+          </section>
+          {/* Main Content - Introduction and Description */}
+          <article className="flex flex-col justify-center max-w-xl col-span-2 order-first md:order-none">
             <h2 className="h-32 lg:h-44 text-2xl mt-2 leading-tight text-center md:text-left md:text-4xl md:mb-10">
               {t("developer_title")}, <br />
               <StaticTextWithAnimation
@@ -82,9 +86,9 @@ export default async function Home() {
             >
               {t("description")}
             </p>
-          </div>
+          </article>
         </div>
-      </div>
+      </section>
     </main>
   );
 }

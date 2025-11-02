@@ -7,9 +7,37 @@ import { ReadTechFlattenUseCase } from "@/core/application/usecases/tech.usecase
 import { techApiRepository } from "@/core/infrastructure/api/tech.repo";
 // import { readAllTechsC } from "@/core/interface-adapters/controllers/tech/read.controller";
 import { Link as LinkLocale } from "@/lib/i18n/routing";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { toast } from "sonner";
+import { generateMetadata as generateSEOMetadata } from "@/lib/metadata";
+import { Metadata } from "next";
+
+// Generate metadata for SEO
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  
+  const titles = {
+    es: 'Stack Tecnológico - Adan Reh Mañach | Habilidades de Desarrollo',
+    en: 'Tech Stack - Adan Reh Mañach | Development Skills',
+    ca: 'Stack Tecnològic - Adan Reh Mañach | Habilitats de Desenvolupament',
+    de: 'Tech-Stack - Adan Reh Mañach | Entwicklungsfähigkeiten',
+  };
+
+  const descriptions = {
+    es: 'Mi stack tecnológico y habilidades de desarrollo. Experto en React, Next.js, TypeScript, Node.js, IIoT, DevOps y arquitecturas escalables. Barcelona, España.',
+    en: 'My tech stack and development skills. Expert in React, Next.js, TypeScript, Node.js, IIoT, DevOps and scalable architectures. Barcelona, Spain.',
+    ca: 'El meu stack tecnològic i habilitats de desenvolupament. Expert en React, Next.js, TypeScript, Node.js, IIoT, DevOps i arquitectures escalables. Barcelona, Espanya.',
+    de: 'Mein Tech-Stack und Entwicklungsfähigkeiten. Experte in React, Next.js, TypeScript, Node.js, IIoT, DevOps und skalierbaren Architekturen. Barcelona, Spanien.',
+  };
+
+  return generateSEOMetadata({
+    locale: locale as 'es' | 'en' | 'ca' | 'de',
+    title: titles[locale as keyof typeof titles] || titles.es,
+    description: descriptions[locale as keyof typeof descriptions] || descriptions.es,
+    path: '/info',
+  });
+}
 
 const AboutMePage = async () => {
     const {data:allLeng} = await new ReadTechFlattenUseCase(techApiRepository).execute()
