@@ -21,7 +21,8 @@
     "**/dist/**",
     "**/.next/**",
     "**/middleware.ts",
-    "**/projects-hardcdd.ts"
+    "**/projects-hardcdd.ts",
+    "**/src/lib/seo/**"
   ],
   "reporter": [
     "text",
@@ -29,6 +30,6 @@
     "lcov",
     "json-summary"
   ],
-  "report-dir": "./docs/coverage-reports",
+  "report-dir": "./docs/coverage",
   "temp-dir": "./.nyc_output"
 }
