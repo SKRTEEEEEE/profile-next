@@ -251,6 +251,54 @@ This project is optimized for performance:
 - 🖼️ **Image Optimization:** Next.js Image component
 - 🔤 **Font Optimization:** `next/font` with Geist font family
 
+### 🔍 SEO Optimization
+
+The portfolio is optimized for maximum search engine visibility with comprehensive SEO implementation:
+
+**Core SEO Features:**
+- **robots.txt** - Dynamically generated via `src/app/robots.ts`
+  - Allows all public routes
+  - Disallows API, admin, and internal Next.js routes
+  - Includes sitemap reference
+  
+- **sitemap.xml** - Auto-generated XML sitemap via `src/app/sitemap.ts`
+  - All pages in 4 languages (es, en, ca, de)
+  - Priority levels for important pages
+  - Change frequencies for search engine crawlers
+  - Last modification dates
+  - Multi-language alternate links (hreflang)
+
+- **Meta Tags & Open Graph** - Comprehensive metadata for all pages
+  - Custom titles and descriptions per page and locale
+  - Open Graph tags for social media sharing
+  - Twitter Card metadata
+  - Geo-location tags (Barcelona, Spain)
+  - Author and creator information
+
+- **Structured Data (JSON-LD)** - Rich snippets for search engines
+  - Person schema with professional details
+  - WebSite schema with multilingual support
+  - ProfilePage schema for portfolio
+  - SoftwareApplication schema for projects
+
+**Target Keywords:**
+The site is optimized to rank for:
+- "dev desarrollador tech" / "dev desarollador tech"
+- "desarrollador web Barcelona" / "desarollador web Barcelona"
+- "fullstack developer Barcelona"
+- "React developer Barcelona"
+- And many more technology-specific keywords
+
+**Access SEO Files:**
+- Robots: `https://dev.desarrollador.tech/robots.txt`
+- Sitemap: `https://dev.desarrollador.tech/sitemap.xml`
+
+**SEO Implementation:**
+- `src/lib/seo/metadata.ts` - Meta tag generation
+- `src/lib/seo/schemas.ts` - JSON-LD structured data
+- `src/app/robots.ts` - robots.txt configuration
+- `src/app/sitemap.ts` - sitemap.xml generation
+
 ### 🚀 Performance-Optimized Pages
 
 We provide dedicated `/perf` routes that achieve **100% Lighthouse scores** across all metrics (Performance, Accessibility, Best Practices, SEO):
