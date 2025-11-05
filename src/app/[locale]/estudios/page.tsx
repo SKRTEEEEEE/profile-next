@@ -16,10 +16,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 
   const descriptions = {
-    es: 'Formación y certificaciones en desarrollo web fullstack, blockchain, Python y Big Data. Experiencia en JavaScript, Node.js, React, Solidity y más. Barcelona, España.',
-    en: 'Training and certifications in fullstack web development, blockchain, Python and Big Data. Experience in JavaScript, Node.js, React, Solidity and more. Barcelona, Spain.',
-    ca: 'Formació i certificacions en desenvolupament web fullstack, blockchain, Python i Big Data. Experiència en JavaScript, Node.js, React, Solidity i més. Barcelona, Espanya.',
-    de: 'Ausbildung und Zertifizierungen in Fullstack-Webentwicklung, Blockchain, Python und Big Data. Erfahrung in JavaScript, Node.js, React, Solidity und mehr. Barcelona, Spanien.',
+    es: 'Formación en desarrollo web, blockchain, Python y Big Data. JavaScript, Node.js, React, Solidity. Barcelona.',
+    en: 'Training in web development, blockchain, Python and Big Data. JavaScript, Node.js, React, Solidity. Barcelona.',
+    ca: 'Formació en desenvolupament web, blockchain, Python i Big Data. JavaScript, Node.js, React, Solidity. Barcelona.',
+    de: 'Ausbildung in Webentwicklung, Blockchain, Python und Big Data. JavaScript, Node.js, React, Solidity. Barcelona.',
   };
 
   return generateSEOMetadata({

@@ -25,10 +25,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 
   const descriptions = {
-    es: 'Mi stack tecnológico y habilidades de desarrollo. Experto en React, Next.js, TypeScript, Node.js, IIoT, DevOps y arquitecturas escalables. Barcelona, España.',
-    en: 'My tech stack and development skills. Expert in React, Next.js, TypeScript, Node.js, IIoT, DevOps and scalable architectures. Barcelona, Spain.',
-    ca: 'El meu stack tecnològic i habilitats de desenvolupament. Expert en React, Next.js, TypeScript, Node.js, IIoT, DevOps i arquitectures escalables. Barcelona, Espanya.',
-    de: 'Mein Tech-Stack und Entwicklungsfähigkeiten. Experte in React, Next.js, TypeScript, Node.js, IIoT, DevOps und skalierbaren Architekturen. Barcelona, Spanien.',
+    es: 'Stack tecnológico: React, Next.js, TypeScript, Node.js, IIoT, DevOps. Barcelona, España.',
+    en: 'Tech stack: React, Next.js, TypeScript, Node.js, IIoT, DevOps. Barcelona, Spain.',
+    ca: 'Stack tecnològic: React, Next.js, TypeScript, Node.js, IIoT, DevOps. Barcelona, Espanya.',
+    de: 'Tech-Stack: React, Next.js, TypeScript, Node.js, IIoT, DevOps. Barcelona, Spanien.',
   };
 
   return generateSEOMetadata({

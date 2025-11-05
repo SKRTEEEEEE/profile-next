@@ -37,10 +37,10 @@ export const personalInfo = {
     de: 'Fullstack-Entwickler',
   },
   description: {
-    es: 'Desarrollador Fullstack especializado en web, IIoT y DevOps. Arquitecturas escalables y seguras, protocolos de comunicación. Barcelona, España.',
-    en: 'Fullstack Developer specialized in web, IIoT and DevOps. Scalable and secure architectures, communication protocols. Barcelona, Spain.',
-    ca: 'Desenvolupador Fullstack especialitzat en web, IIoT i DevOps. Arquitectures escalables i segures, protocols de comunicació. Barcelona, Espanya.',
-    de: 'Fullstack-Entwickler spezialisiert auf Web, IIoT und DevOps. Skalierbare und sichere Architekturen, Kommunikationsprotokolle. Barcelona, Spanien.',
+    es: 'Desarrollador Fullstack en Barcelona. Especializado en web, IIoT y DevOps. React, Next.js, TypeScript, Node.js.',
+    en: 'Fullstack Developer in Barcelona. Specialized in web, IIoT and DevOps. React, Next.js, TypeScript, Node.js.',
+    ca: 'Desenvolupador Fullstack a Barcelona. Especialitzat en web, IIoT i DevOps. React, Next.js, TypeScript, Node.js.',
+    de: 'Fullstack-Entwickler in Barcelona. Spezialisiert auf Web, IIoT und DevOps. React, Next.js, TypeScript, Node.js.',
   },
   socialProfiles: [
     `https://github.com/${creatorData.name}`,

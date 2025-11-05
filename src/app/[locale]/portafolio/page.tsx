@@ -17,10 +17,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 
   const descriptions = {
-    es: 'Portafolio de proyectos open source destacados. Ejemplos de desarrollo web con React, Next.js, TypeScript, Node.js y tecnologías modernas. Desarrollador en Barcelona.',
-    en: 'Featured open source projects portfolio. Web development examples with React, Next.js, TypeScript, Node.js and modern technologies. Developer in Barcelona.',
-    ca: 'Portafoli de projectes open source destacats. Exemples de desenvolupament web amb React, Next.js, TypeScript, Node.js i tecnologies modernes. Desenvolupador a Barcelona.',
-    de: 'Portfolio mit ausgewählten Open-Source-Projekten. Webentwicklungsbeispiele mit React, Next.js, TypeScript, Node.js und modernen Technologien. Entwickler in Barcelona.',
+    es: 'Portafolio de proyectos open source. React, Next.js, TypeScript, Node.js. Desarrollador en Barcelona.',
+    en: 'Open source portfolio. React, Next.js, TypeScript, Node.js. Developer in Barcelona.',
+    ca: 'Portafoli de projectes open source. React, Next.js, TypeScript, Node.js. Desenvolupador a Barcelona.',
+    de: 'Open-Source-Portfolio. React, Next.js, TypeScript, Node.js. Entwickler in Barcelona.',
   };
 
   return generateSEOMetadata({
