@@ -2,54 +2,164 @@ name: 👁️‍🗨️ Playwright Tests
 on:
   pull_request:
     branches: [ main, master, buildn ]
+  push:
+    branches: [ main ]
 
 jobs:
   test:
-    timeout-minutes: 60
+    timeout-minutes: 30
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-    # Checkout principal + submodules
+    # Checkout con fetch-depth completo para git operations
     - uses: actions/checkout@v5
       with:
-          submodules: true        # <- trae todo el historial
+        submodules: true
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-    # Setup Node.js
+    # Setup Node.js con caché para dependencias
     - uses: actions/setup-node@v6
       with:
         node-version: lts/*
+        cache: 'npm'
 
-    # Install dependencies
+    # Install dependencies (usa caché si está disponible)
     - name: Install dependencies
       run: npm ci
 
-    # Install Playwright browsers
+    # Caché de Playwright browsers
+    - name: Get Playwright version
+      id: playwright-version
+      run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package-lock.json').packages['node_modules/@playwright/test'].version)")" >> $GITHUB_OUTPUT
+
+    - name: Cache Playwright browsers
+      uses: actions/cache@v4
+      id: playwright-cache
+      with:
+        path: ~/.cache/ms-playwright
+        key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.PLAYWRIGHT_VERSION }}
+
     - name: Install Playwright Browsers
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
       run: npx playwright install --with-deps
 
-    # Start Next.js server
+    - name: Install Playwright dependencies only
+      if: steps.playwright-cache.outputs.cache-hit == 'true'
+      run: npx playwright install-deps
+
+    # Build Next.js con Turbopack (más rápido)
+    - name: Build Next.js
+      run: npm run build
+      env:
+        NODE_ENV: production
+
+    # Start Next.js server en background
     - name: Start Next.js server
       run: |
-        npm run build
         npm run start &
+        echo $! > .next-server.pid
       env:
         NODE_ENV: production
         NEXT_PUBLIC_API_MOCKING: "enabled"
         PORT: 3000
     
-    # Wait for server to be ready
-    - name: Wait for server
-      run: npx wait-on http://localhost:3000 --timeout 60000
+    # Wait for server con verificación de rutas
+    - name: Wait for server to be ready
+      run: |
+        npx wait-on http://localhost:3000 --timeout 90000
+        npx wait-on http://localhost:3000/es --timeout 30000
+        npx wait-on http://localhost:3000/es/portafolio --timeout 30000
+        npx wait-on http://localhost:3000/es/proyectos --timeout 30000
+        npx wait-on http://localhost:3000/es/info --timeout 30000
+        npx wait-on http://localhost:3000/es/estudios --timeout 30000
+        sleep 5
+        curl -f http://localhost:3000/es || exit 1
 
-    # Run Playwright tests with coverage
+    # Run Playwright tests con coverage
     - name: Run Playwright tests
       run: npm run test:coverage
       continue-on-error: false
       env:
         CI: true
 
+    # Parse coverage results
+    - name: Parse coverage data
+      id: coverage
+      if: always()
+      run: |
+        if [ -f "docs/coverage/coverage-summary.json" ]; then
+          STATEMENTS=$(node -e "console.log(require('./docs/coverage/coverage-summary.json').total.statements.pct)")
+          BRANCHES=$(node -e "console.log(require('./docs/coverage/coverage-summary.json').total.branches.pct)")
+          FUNCTIONS=$(node -e "console.log(require('./docs/coverage/coverage-summary.json').total.functions.pct)")
+          LINES=$(node -e "console.log(require('./docs/coverage/coverage-summary.json').total.lines.pct)")
+          
+          echo "statements=$STATEMENTS" >> $GITHUB_OUTPUT
+          echo "branches=$BRANCHES" >> $GITHUB_OUTPUT
+          echo "functions=$FUNCTIONS" >> $GITHUB_OUTPUT
+          echo "lines=$LINES" >> $GITHUB_OUTPUT
+          
+          echo "Coverage: Statements $STATEMENTS% | Branches $BRANCHES% | Functions $FUNCTIONS% | Lines $LINES%"
+        else
+          echo "Coverage file not found"
+          echo "statements=0" >> $GITHUB_OUTPUT
+          echo "branches=0" >> $GITHUB_OUTPUT
+          echo "functions=0" >> $GITHUB_OUTPUT
+          echo "lines=0" >> $GITHUB_OUTPUT
+        fi
+
+    # Update README with coverage badges (solo en main)
+    - name: Update README with coverage badges
+      if: github.ref == 'refs/heads/main' && steps.coverage.outputs.statements != '0'
+      run: |
+        STATEMENTS="${{ steps.coverage.outputs.statements }}"
+        BRANCHES="${{ steps.coverage.outputs.branches }}"
+        FUNCTIONS="${{ steps.coverage.outputs.functions }}"
+        LINES="${{ steps.coverage.outputs.lines }}"
+        
+        # Generar color basado en porcentaje
+        get_color() {
+          val=$1
+          if (( $(echo "$val >= 80" | bc -l) )); then echo "brightgreen"
+          elif (( $(echo "$val >= 60" | bc -l) )); then echo "yellow"
+          else echo "red"; fi
+        }
+        
+        STMT_COLOR=$(get_color $STATEMENTS)
+        BRANCH_COLOR=$(get_color $BRANCHES)
+        FUNC_COLOR=$(get_color $FUNCTIONS)
+        LINE_COLOR=$(get_color $LINES)
+        
+        # Crear línea de badges con formato específico
+        BADGES="![Test Coverage](https://img.shields.io/badge/TEST-Coverage-green?style=social) [![Coverage: Statements](https://img.shields.io/badge/Statements-${STATEMENTS}%25-${STMT_COLOR}?style=flat-square)](https://github.com/${{ github.repository }}) [![Coverage: Branches](https://img.shields.io/badge/Branches-${BRANCHES}%25-${BRANCH_COLOR}?style=flat-square)](https://github.com/${{ github.repository }}) [![Coverage:Functions](https://img.shields.io/badge/Functions-${FUNCTIONS}%25-${FUNC_COLOR}?style=flat-square)](https://github.com/${{ github.repository }}) [![Coverage: Lines](https://img.shields.io/badge/Lines-${LINES}%25-${LINE_COLOR}?style=flat-square)](https://github.com/${{ github.repository }})"
+        
+        # Actualizar README
+        if grep -q "Test Coverage" README.md && grep -q "Coverage: Statements" README.md; then
+          # Reemplazar línea existente
+          sed -i "/Test Coverage.*Coverage: Statements/c\\$BADGES" README.md
+        elif grep -q "Coverage: Statements" README.md; then
+          # Si solo existe la versión antigua, reemplazarla
+          sed -i "/Coverage: Statements/c\\$BADGES" README.md
+        else
+          # Añadir después del título principal
+          sed -i "/^# /a\\$BADGES" README.md
+        fi
+
+    # Commit y push de README actualizado
+    - name: Commit coverage badges
+      if: github.ref == 'refs/heads/main' && steps.coverage.outputs.statements != '0'
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add README.md
+        git diff --staged --quiet || git commit -m "docs: update coverage badges [skip ci]"
+        git push
+
     # Upload test report
     - uses: actions/upload-artifact@v5
-      if: ${{ !cancelled() }}
+      if: always()
       with:
         name: playwright-report
         path: docs/test-results/
@@ -57,8 +167,38 @@ jobs:
     
     # Upload coverage report
     - uses: actions/upload-artifact@v5
-      if: ${{ !cancelled() }}
+      if: always()
       with:
         name: coverage-report
         path: docs/coverage/
         retention-days: 30
+    
+    # Comment PR con resultados
+    - name: Comment PR with coverage
+      if: github.event_name == 'pull_request' && steps.coverage.outputs.statements != '0'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const statements = '${{ steps.coverage.outputs.statements }}';
+          const branches = '${{ steps.coverage.outputs.branches }}';
+          const functions = '${{ steps.coverage.outputs.functions }}';
+          const lines = '${{ steps.coverage.outputs.lines }}';
+          
+          const body = `## 📊 Test Coverage Results
+          
+          | Metric | Coverage |
+          |--------|----------|
+          | **Statements** | ${statements}% |
+          | **Branches** | ${branches}% |
+          | **Functions** | ${functions}% |
+          | **Lines** | ${lines}% |
+          
+          [View full report in artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          `;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: body
+          });

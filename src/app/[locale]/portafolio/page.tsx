@@ -1,9 +1,9 @@
 import { TabsSectionPortafolio } from "@/components/portafolio/tabs-section";
 import { readExampleProjectsUC } from "@/core/application/usecases/entities/project";
 import { getLocale, getTranslations } from "next-intl/server";
-import { generateMetadata as generateSEOMetadata, generateProfilePageSchema } from "@/lib/metadata";
+import { generateMetadata as generateSEOMetadata } from "@/lib/seo/metadata";
+import { generateProfilePageSchema } from "@/lib/seo/schemas";
 import { Metadata } from "next";
-import Head from "next/head";
 
 // Generate metadata for SEO
 export async function generateMetadata(): Promise<Metadata> {
@@ -17,10 +17,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 
   const descriptions = {
-    es: 'Portafolio de proyectos open source destacados. Ejemplos de desarrollo web con React, Next.js, TypeScript, Node.js y tecnologías modernas. Desarrollador en Barcelona.',
-    en: 'Featured open source projects portfolio. Web development examples with React, Next.js, TypeScript, Node.js and modern technologies. Developer in Barcelona.',
-    ca: 'Portafoli de projectes open source destacats. Exemples de desenvolupament web amb React, Next.js, TypeScript, Node.js i tecnologies modernes. Desenvolupador a Barcelona.',
-    de: 'Portfolio mit ausgewählten Open-Source-Projekten. Webentwicklungsbeispiele mit React, Next.js, TypeScript, Node.js und modernen Technologien. Entwickler in Barcelona.',
+    es: 'Portafolio de proyectos open source. React, Next.js, TypeScript, Node.js. Desarrollador en Barcelona.',
+    en: 'Open source portfolio. React, Next.js, TypeScript, Node.js. Developer in Barcelona.',
+    ca: 'Portafoli de projectes open source. React, Next.js, TypeScript, Node.js. Desenvolupador a Barcelona.',
+    de: 'Open-Source-Portfolio. React, Next.js, TypeScript, Node.js. Entwickler in Barcelona.',
   };
 
   return generateSEOMetadata({

@@ -4,7 +4,7 @@ import { Link as LinkLocale } from '@/lib/i18n/routing';
 import { readProjectsDeployedUC } from '@/core/application/usecases/entities/project';
 import { IntlKey } from '@/core/domain/entities/intl.type';
 import { Project } from '@/core/application/interface/project.interface';
-import { generateMetadata as generateSEOMetadata, generateBreadcrumbSchema } from '@/lib/metadata';
+import { generateMetadata as generateSEOMetadata } from '@/lib/seo/metadata';
 import { Metadata } from 'next';
 
 type SearchParams = Promise<{
@@ -24,10 +24,10 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 
   const descriptions = {
-    es: 'Explora mis proyectos web desplegados. Portfolio de desarrollo fullstack con React, Next.js, TypeScript y más tecnologías modernas. Barcelona, España.',
-    en: 'Explore my deployed web projects. Fullstack development portfolio with React, Next.js, TypeScript and modern technologies. Barcelona, Spain.',
-    ca: 'Explora els meus projectes web desplegats. Portafoli de desenvolupament fullstack amb React, Next.js, TypeScript i més tecnologies modernes. Barcelona, Espanya.',
-    de: 'Entdecken Sie meine bereitgestellten Webprojekte. Fullstack-Entwicklungsportfolio mit React, Next.js, TypeScript und modernen Technologien. Barcelona, Spanien.',
+    es: 'Proyectos web desplegados. Portfolio fullstack con React, Next.js, TypeScript. Barcelona, España.',
+    en: 'Deployed web projects. Fullstack portfolio with React, Next.js, TypeScript. Barcelona, Spain.',
+    ca: 'Projectes web desplegats. Portafoli fullstack amb React, Next.js, TypeScript. Barcelona, Espanya.',
+    de: 'Bereitgestellte Webprojekte. Fullstack-Portfolio mit React, Next.js, TypeScript. Barcelona, Spanien.',
   };
 
   return generateSEOMetadata({
