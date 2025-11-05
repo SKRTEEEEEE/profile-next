@@ -10,6 +10,37 @@ import { createSimpleIconByNameBadge, DynamicSimpleIcon } from "@/components/oth
 import { KeyProject, TechProject } from "@/core/domain/entities/project";
 import { LucideIconNames } from "@/dynamic.types";
 import { TypeProject } from "@/core/domain/entities/project.type";
+import { generateMetadata as generateSEOMetadata } from "@/lib/seo/metadata";
+import { Metadata } from "next";
+
+// Generate metadata for SEO
+export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const params = await props.params;
+  const locale = await getLocale();
+  const project = await readProjectByIdUC(params.id);
+  
+  if (!project) {
+    return generateSEOMetadata({
+      locale: locale as 'es' | 'en' | 'ca' | 'de',
+      title: 'Proyecto no encontrado',
+      description: 'El proyecto solicitado no existe.',
+      path: `/proyectos/${params.id}`,
+      noIndex: true,
+    });
+  }
+
+  const title = `${project.title[locale as IntlKey]} - Adan Reh Mañach | Proyecto Web Barcelona`;
+  const description = project.desc[locale as IntlKey];
+
+  return generateSEOMetadata({
+    locale: locale as 'es' | 'en' | 'ca' | 'de',
+    title,
+    description,
+    path: `/proyectos/${params.id}`,
+    image: project.image || undefined,
+    type: 'article',
+  });
+}
 
 type TechsSectionProps = {
   techs: TechProject[],

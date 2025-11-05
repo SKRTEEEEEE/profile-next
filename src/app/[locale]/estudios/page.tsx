@@ -1,7 +1,7 @@
 import CounterServices from "@/components/ceo/counter-services";
 import TimeLine, { DataTimeLine } from "@/components/ceo/time-line";
 import { getLocale, getTranslations } from "next-intl/server";
-import { generateMetadata as generateSEOMetadata } from "@/lib/metadata";
+import { generateMetadata as generateSEOMetadata } from "@/lib/seo/metadata";
 import { Metadata } from "next";
 
 // Generate metadata for SEO

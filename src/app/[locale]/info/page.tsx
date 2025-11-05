@@ -10,7 +10,7 @@ import { Link as LinkLocale } from "@/lib/i18n/routing";
 import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { toast } from "sonner";
-import { generateMetadata as generateSEOMetadata } from "@/lib/metadata";
+import { generateMetadata as generateSEOMetadata } from "@/lib/seo/metadata";
 import { Metadata } from "next";
 
 // Generate metadata for SEO

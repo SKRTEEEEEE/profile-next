@@ -1,9 +1,9 @@
 import { TabsSectionPortafolio } from "@/components/portafolio/tabs-section";
 import { readExampleProjectsUC } from "@/core/application/usecases/entities/project";
 import { getLocale, getTranslations } from "next-intl/server";
-import { generateMetadata as generateSEOMetadata, generateProfilePageSchema } from "@/lib/metadata";
+import { generateMetadata as generateSEOMetadata } from "@/lib/seo/metadata";
+import { generateProfilePageSchema } from "@/lib/seo/schemas";
 import { Metadata } from "next";
-import Head from "next/head";
 
 // Generate metadata for SEO
 export async function generateMetadata(): Promise<Metadata> {

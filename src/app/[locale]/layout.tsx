@@ -10,10 +10,12 @@ import { ThemeProvider } from "next-themes";
 import { Navbar } from "@/components/oth/navbar";
 import { 
   generateMetadata as generateSEOMetadata, 
-  generatePersonSchema, 
-  generateWebSiteSchema,
   personalInfo 
-} from "@/lib/metadata";
+} from "@/lib/seo/metadata";
+import { 
+  generatePersonSchema, 
+  generateWebSiteSchema 
+} from "@/lib/seo/schemas";
 import { Metadata } from "next";
 
 // Optimize font loading for better LCP

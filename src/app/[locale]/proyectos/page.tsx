@@ -4,7 +4,7 @@ import { Link as LinkLocale } from '@/lib/i18n/routing';
 import { readProjectsDeployedUC } from '@/core/application/usecases/entities/project';
 import { IntlKey } from '@/core/domain/entities/intl.type';
 import { Project } from '@/core/application/interface/project.interface';
-import { generateMetadata as generateSEOMetadata, generateBreadcrumbSchema } from '@/lib/metadata';
+import { generateMetadata as generateSEOMetadata } from '@/lib/seo/metadata';
 import { Metadata } from 'next';
 
 type SearchParams = Promise<{
