@@ -132,12 +132,15 @@ jobs:
         FUNC_COLOR=$(get_color $FUNCTIONS)
         LINE_COLOR=$(get_color $LINES)
         
-        # Crear línea de badges
-        BADGES="[![Coverage: Statements](https://img.shields.io/badge/Statements-${STATEMENTS}%25-${STMT_COLOR}?style=flat-square)](https://github.com/${{ github.repository }}) [![Coverage: Branches](https://img.shields.io/badge/Branches-${BRANCHES}%25-${BRANCH_COLOR}?style=flat-square)](https://github.com/${{ github.repository }}) [![Coverage: Functions](https://img.shields.io/badge/Functions-${FUNCTIONS}%25-${FUNC_COLOR}?style=flat-square)](https://github.com/${{ github.repository }}) [![Coverage: Lines](https://img.shields.io/badge/Lines-${LINES}%25-${LINE_COLOR}?style=flat-square)](https://github.com/${{ github.repository }})"
+        # Crear línea de badges con formato específico
+        BADGES="![Test Coverage](https://img.shields.io/badge/TEST-Coverage-green?style=social) [![Coverage: Statements](https://img.shields.io/badge/Statements-${STATEMENTS}%25-${STMT_COLOR}?style=flat-square)](https://github.com/${{ github.repository }}) [![Coverage: Branches](https://img.shields.io/badge/Branches-${BRANCHES}%25-${BRANCH_COLOR}?style=flat-square)](https://github.com/${{ github.repository }}) [![Coverage:Functions](https://img.shields.io/badge/Functions-${FUNCTIONS}%25-${FUNC_COLOR}?style=flat-square)](https://github.com/${{ github.repository }}) [![Coverage: Lines](https://img.shields.io/badge/Lines-${LINES}%25-${LINE_COLOR}?style=flat-square)](https://github.com/${{ github.repository }})"
         
         # Actualizar README
-        if grep -q "Coverage: Statements" README.md; then
+        if grep -q "Test Coverage" README.md && grep -q "Coverage: Statements" README.md; then
           # Reemplazar línea existente
+          sed -i "/Test Coverage.*Coverage: Statements/c\\$BADGES" README.md
+        elif grep -q "Coverage: Statements" README.md; then
+          # Si solo existe la versión antigua, reemplazarla
           sed -i "/Coverage: Statements/c\\$BADGES" README.md
         else
           # Añadir después del título principal
