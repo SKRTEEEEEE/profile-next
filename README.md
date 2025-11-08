@@ -1,5 +1,5 @@
 # 🚀 Profile Next - Modern Portfolio Website
-[![Next.js](https://img.shields.io/badge/Next.js-15.5.4-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.1.0-61dafb?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
@@ -19,8 +19,8 @@
 
 - 🌍 **Multilingual Support** - Available in English, Spanish, Catalan, and German
 - 🎨 **Modern UI/UX** - Sleek design with particle effects and smooth animations
-- ⚡ **Performance Optimized** - Built with Next.js 15 App Router and Turbopack
-- 🚀 **Performance Pages** - Dedicated `/perf` routes with 100% Lighthouse scores
+- ⚡ **Performance Optimized** - Built with Next.js 16 App Router and Turbopack
+- 🚀 **Performance Pages** - Dedicated routes with 100% Lighthouse scores
 - 🎯 **Type-Safe** - Full TypeScript implementation
 - 📱 **Responsive Design** - Mobile-first approach with Tailwind CSS 4
 - 🧪 **Tested** - Unit and E2E tests with Playwright
