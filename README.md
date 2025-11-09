@@ -15,7 +15,7 @@
 [![Coverage: Lines](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SKRTEEEEEE/profile-next/main/.github/badges/coverage-lines.json)](.github/badges/coverage-lines.json)
 </div>
 
-> A modern, multilingual, and highly performant portfolio website built with Next.js 15, React 19, TypeScript, and Tailwind CSS. Features Clean Architecture, internationalization (i18n), and stunning particle effects.
+> A modern, multilingual, and highly performant portfolio website built with Next.js 16, React 19, TypeScript, and Tailwind CSS. Features Clean Architecture, internationalization (i18n), and stunning particle effects.
 
 ---
 
@@ -27,8 +27,8 @@
 
 - 🌍 **Multilingual Support** - Available in English, Spanish, Catalan, and German
 - 🎨 **Modern UI/UX** - Sleek design with particle effects and smooth animations
-- ⚡ **Performance Optimized** - Built with Next.js 15 App Router and Turbopack
-- 🚀 **Performance Pages** - Dedicated `/perf` routes with 100% Lighthouse scores
+- ⚡ **Performance Optimized** - Built with Next.js 16 App Router and Turbopack
+- 🚀 **Performance Pages** - Dedicated routes with 100% Lighthouse scores
 - 🎯 **Type-Safe** - Full TypeScript implementation
 - 📱 **Responsive Design** - Mobile-first approach with Tailwind CSS 4
 - 🧪 **Tested** - Unit and E2E tests with Playwright
