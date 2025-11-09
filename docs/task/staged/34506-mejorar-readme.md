@@ -1,0 +1,3 @@
+## Key Points
+- [ ] FIX: issue al poner los badges de test, se pone debajo de todos los #, se debería poner debajo de solo el primero
+- [ ] Cambiar el enfoque de coverage (reportes), nose porque hemos cambiado el path a coverage, si enteoria se utiliza para poner en el README.md el coverage de Github Action. Por lo tanto si no es necesario, no quiero que se este trackeando siempre, por eso lo tenia como coverage-reports, el cual esta -gitignore ado

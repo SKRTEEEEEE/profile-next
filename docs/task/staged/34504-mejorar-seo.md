@@ -1,6 +1,6 @@
 # Mejorar SEO y Accesibilidad
 ## Objetivo
-Mejorar el CEO al máximo, añadiendo las etiquetas necesarias y mejorando la semantica de las etiquetas html que veas muy necesarias
+Mejorar el SEO al máximo, añadiendo las etiquetas necesarias y mejorando la semantica de las etiquetas html que veas muy necesarias
 ## Aclaraciones
 Actualmente la pagina esta en un 90% de ceo le falta metadescripcion.
 - Me gustaria que al buscar: dev desarrollador tech | dev desarollador tech -> en google aparezca
