@@ -11,7 +11,7 @@ export {
   generateMetadata,
   personalInfo,
   baseUrl,
-  alternateUrl,
+  // alternateUrl,
   keywords,
 } from './metadata';
 

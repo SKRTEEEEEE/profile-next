@@ -11,8 +11,8 @@
 import { Metadata } from 'next';
 import { creatorData } from '../data';
 
-export const baseUrl = 'https://dev.desarrollador.tech';
-export const alternateUrl = 'https://dev.desarrollador.tech';
+export const baseUrl = 'https://dev.desarollador.tech';
+// export const alternateUrl = 'https://dev.desarrollador.tech';
 
 // Personal Information
 export const personalInfo = {
