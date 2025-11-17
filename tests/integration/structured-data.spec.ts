@@ -45,7 +45,7 @@ test.describe('Structured Data Tests', () => {
         expect(data.sameAs).toContain('https://github.com/SKRTEEEEEE');
         
         // Check URL
-        expect(data.url).toContain('dev.desarrollador.tech');
+        expect(data.url).toContain('dev.desarollador.tech');
       }
     });
 
@@ -91,7 +91,7 @@ test.describe('Structured Data Tests', () => {
       
       if (websiteSchema) {
         expect(websiteSchema.name).toBeTruthy();
-        expect(websiteSchema.url).toContain('dev.desarrollador.tech');
+        expect(websiteSchema.url).toContain('dev.desarollador.tech');
         expect(websiteSchema.description).toBeTruthy();
         
         // Check for potential search action

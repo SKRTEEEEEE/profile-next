@@ -42,7 +42,7 @@ export default async function Home() {
         <div className="z-20 grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 items-start justify-around max-h-dvh p-6 py-10 xl:pt-24 md:my-auto">
           {/* Navigation Links - Primary Actions */}
           <section className="flex flex-col items-center gap-1 font-semibold md:items-end md:gap-6 order-last md:order-none" aria-labelledby="primary-actions-heading">
-            <h2 id="primary-actions-heading" className="sr-only">{t("buttons.primary_actions") || "Primary Actions"}</h2>
+            <h2 id="primary-actions-heading" className="sr-only">{"Primary Actions"}</h2>
             <RenderLocalNav type="portafolio" className={cn(baseCNLocalNav,"bg-primary-ceo-800/80 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.view_projects"), pathname: ""}}/>
             <RenderLocalNav type="info" className={cn(baseCNLocalNav," bg-primary-ceo-800/70 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.tech_stack"), pathname: ""}}/>
             <RenderLocalNav type="estudios" className={cn(baseCNLocalNav,"bg-primary-ceo-800/60 hover:bg-primary-ceo-900/20")} config={{text: t("buttons.studies"), pathname: ""}}/>

@@ -37,7 +37,7 @@ test.describe('SEO - robots.txt Configuration', () => {
     const content = await page.textContent('body');
     
     expect(content).toContain('Sitemap:');
-    expect(content).toContain('dev.desarrollador.tech');
+    expect(content).toContain('dev.desarollador.tech');
     expect(content).toContain('sitemap.xml');
   });
 
@@ -77,10 +77,10 @@ test.describe('SEO - sitemap.xml Configuration', () => {
     const content = await response?.text();
     
     // Check for locale-specific home pages
-    expect(content).toContain('dev.desarrollador.tech/es');
-    expect(content).toContain('dev.desarrollador.tech/en');
-    expect(content).toContain('dev.desarrollador.tech/ca');
-    expect(content).toContain('dev.desarrollador.tech/de');
+    expect(content).toContain('dev.desarollador.tech/es');
+    expect(content).toContain('dev.desarollador.tech/en');
+    expect(content).toContain('dev.desarollador.tech/ca');
+    expect(content).toContain('dev.desarollador.tech/de');
   });
 
   test('should include main pages for all locales', async ({ page }) => {
@@ -152,11 +152,11 @@ test.describe('SEO - sitemap.xml Configuration', () => {
     expect(content).toContain('</priority>');
   });
 
-  test('should use correct domain (dev.desarrollador.tech)', async ({ page }) => {
+  test('should use correct domain (dev.desarollador.tech)', async ({ page }) => {
     const response = await page.goto('/sitemap.xml');
     const content = await response?.text();
     
-    expect(content).toContain('dev.desarrollador.tech');
+    expect(content).toContain('dev.desarollador.tech');
     // Should not contain localhost or other domains
     expect(content).not.toContain('localhost');
     expect(content).not.toContain('example.com');

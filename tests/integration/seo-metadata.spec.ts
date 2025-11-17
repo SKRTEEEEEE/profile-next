@@ -67,7 +67,7 @@ test.describe('SEO Metadata - Developer Portfolio', () => {
         // Check og:url
         const ogUrl = await page.locator('meta[property="og:url"]').getAttribute('content');
         expect(ogUrl).toBeTruthy();
-        expect(ogUrl).toContain('dev.desarrollador.tech');
+        expect(ogUrl).toContain('dev.desarollador.tech');
         
         // Check og:locale
         const ogLocale = await page.locator('meta[property="og:locale"]').getAttribute('content');
@@ -97,7 +97,7 @@ test.describe('SEO Metadata - Developer Portfolio', () => {
       
       const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
       expect(canonical).toBeTruthy();
-      expect(canonical).toContain('dev.desarrollador.tech');
+      expect(canonical).toContain('dev.desarollador.tech');
     });
 
     test('should have alternate language links', async ({ page }) => {
