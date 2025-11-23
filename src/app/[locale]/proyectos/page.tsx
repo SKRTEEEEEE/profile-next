@@ -14,7 +14,6 @@ type SearchParams = Promise<{
 // Generate metadata for SEO
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
-  const t = await getTranslations();
   
   const titles = {
     es: 'Proyectos Web - Adan Reh Mañach | Desarrollador Fullstack Barcelona',

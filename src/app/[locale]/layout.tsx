@@ -38,10 +38,10 @@ export async function generateMetadata({ params }: LocaleLayoutProps): Promise<M
   const { locale } = await params;
   
   const titles = {
-    es: `${personalInfo.name} - Desarrollador Fullstack Barcelona`,
-    en: `${personalInfo.name} - Fullstack Developer Barcelona`,
-    ca: `${personalInfo.name} - Desenvolupador Fullstack Barcelona`,
-    de: `${personalInfo.name} - Fullstack-Entwickler Barcelona`,
+    es: `Desarrollador - ${personalInfo.name} ©`,
+    en: `Developer - ${personalInfo.name} ©`,
+    ca: `Desenvolupador - ${personalInfo.name} ©`,
+    de: `Entwickler - ${personalInfo.name} ©`,
   };
 
   return generateSEOMetadata({
