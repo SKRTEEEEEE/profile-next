@@ -35,6 +35,14 @@
           "cv": "Web Resume",
           "old_frontend": "Old Version",
           "contact_me": "Contact me"
+        },
+        "seo": {
+          "primary_actions": "Primary Actions - Hire Developer Barcelona",
+          "title_portafolio": "View web development projects - Fullstack Developer Barcelona",
+          "title_tech_stack": "Tech Stack - React, Next.js, TypeScript, Node.js",
+          "title_studies": "Studies and certifications - Web Developer Barcelona",
+          "title_cv": "Download CV - Adan Reh Mañach - Developer Barcelona",
+          "title_old_frontend": "View previous portfolio version of Adan Reh - Fullstack Developer Barcelona"
         }
       }
     },

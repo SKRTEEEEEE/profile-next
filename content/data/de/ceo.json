@@ -35,6 +35,14 @@
           "cv": "Web-Lebenslauf",
           "old_frontend": "Alte Version",
           "contact_me": "Kontaktiere mich"
+        },
+        "seo": {
+          "primary_actions": "Hauptaktionen - Entwickler Barcelona beauftragen",
+          "title_portafolio": "Webentwicklungsprojekte ansehen - Fullstack-Entwickler Barcelona",
+          "title_tech_stack": "Technologie-Stack - React, Next.js, TypeScript, Node.js",
+          "title_studies": "Studien und Zertifizierungen - Webentwickler Barcelona",
+          "title_cv": "Lebenslauf herunterladen - Adan Reh Mañach - Entwickler Barcelona",
+          "title_old_frontend": "Vorherige Portfolio-Version von Adan Reh ansehen - Fullstack-Entwickler Barcelona"
         }
       }
     },

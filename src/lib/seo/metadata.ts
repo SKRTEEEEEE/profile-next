@@ -24,6 +24,8 @@ export const personalInfo = {
     region: 'Catalonia',
     country: 'Spain',
     countryCode: 'ES',
+    // Sant Cugat del Vallès - baja competencia SEO
+    altCity: 'Sant Cugat del Vallès',
     coordinates: {
       latitude: 41.3851,
       longitude: 2.1734,
@@ -35,11 +37,12 @@ export const personalInfo = {
     ca: 'Desenvolupador Fullstack',
     de: 'Fullstack-Entwickler',
   },
+  // Meta descriptions optimizadas (máx 155 caracteres para SEO óptimo)
   description: {
-    es: 'Desarrollador Fullstack en Barcelona. Especializado en web, IIoT y DevOps. React, Next.js, TypeScript, Node.js.',
-    en: 'Fullstack Developer in Barcelona. Specialized in web, IIoT and DevOps. React, Next.js, TypeScript, Node.js.',
-    ca: 'Desenvolupador Fullstack a Barcelona. Especialitzat en web, IIoT i DevOps. React, Next.js, TypeScript, Node.js.',
-    de: 'Fullstack-Entwickler in Barcelona. Spezialisiert auf Web, IIoT und DevOps. React, Next.js, TypeScript, Node.js.',
+    es: 'Programador Fullstack Barcelona. Desarrollo web, apps y SCADA. React, Next.js, TypeScript. Presupuesto sin compromiso.',
+    en: 'Fullstack Developer Barcelona. Web, apps & SCADA development. React, Next.js, TypeScript. Free quote.',
+    ca: 'Programador Fullstack Barcelona. Desenvolupament web, apps i SCADA. React, Next.js, TypeScript.',
+    de: 'Fullstack-Entwickler Barcelona. Web, Apps & SCADA. React, Next.js, TypeScript. Kostenloser Kostenvoranschlag.',
   },
   socialProfiles: [
     `https://github.com/${creatorData.name}`,
@@ -48,53 +51,62 @@ export const personalInfo = {
   ],
 };
 
-// Keywords targeting different markets (prioritized by proximity)
+// Keywords targeting different markets (prioritized by proximity and low competition)
 // Including both "desarrollador" and "desarollador" typo to capture common misspellings
+// Prioridad: Sant Cugat > Catalunya/Cataluña > Barcelona > España
 export const keywords = {
   es: [
     'Adan Reh Mañach',
     'SKRTEEEEEE',
-    // Barcelona specific
+    // Baja competencia - Sant Cugat del Vallès
+    'programador Sant Cugat del Valles',
+    'desarrollador Sant Cugat',
+    'programador industrial Sant Cugat',
+    'presupuesto SCADA Sant Cugat',
+    // Catalunya/Cataluña - menor competencia
+    'programador Catalunya',
+    'programador Cataluña',
+    'desarrollador web Catalunya',
+    'programador industrial Catalunya',
+    'contratar programador Catalunya',
+    'presupuesto SCADA Catalunya',
+    'desarrollador fullstack Catalunya',
+    // Barcelona - keywords principales
+    'programador industrial bcn',
+    'programador industrial Barcelona',
+    'contratar programador industrial bcn',
+    'contratar programador industrial Barcelona',
+    'presupuesto SCADA bcn',
+    'presupuesto SCADA Barcelona',
+    'programador fullstack bcn',
+    'programador fullstack Barcelona',
     'desarrollador web Barcelona',
     'desarollador web Barcelona',
     'desarrollador fullstack Barcelona',
     'desarollador fullstack Barcelona',
     'programador Barcelona',
     'desarrollador React Barcelona',
-    'desarollador React Barcelona',
     'desarrollador Next.js Barcelona',
     'desarrollador TypeScript Barcelona',
-    'desarollador TypeScript Barcelona',
     'desarrollador industrial Barcelona',
     'desarollador industrial Barcelona',
-    'IIoT developer Barcelona',
     'DevOps Barcelona',
-    'desarrollador frontend Barcelona',
-    'desarollador frontend Barcelona',
-    'desarrollador backend Barcelona',
-    'desarollador backend Barcelona',
     'freelance developer Barcelona',
     'programador freelance Barcelona',
-    'desarrollador Node.js Barcelona',
-    'desarollador Node.js Barcelona',
-    'arquitectura de software Barcelona',
-    // Spain general
-    'desarrollador web España',
-    'desarollador web España',
-    'desarrollador tech',
-    'desarollador tech',
+    // Sinónimos dev/desarrollador/programador
     'dev desarrollador tech',
     'dev desarollador tech',
+    'dev fullstack Barcelona',
+    // Spain general
+    'desarrollador web España',
     'full stack developer Spain',
     'web developer Barcelona',
     'software engineer Barcelona',
-    'contratación desarrollador Barcelona',
     'contratar programador Barcelona',
     // Tech specific
     'programador React',
     'experto Next.js',
     'desarrollador TypeScript España',
-    'desarollador TypeScript España',
   ],
   en: [
     'Adan Reh Mañach',
@@ -123,6 +135,23 @@ export const keywords = {
   ca: [
     'Adan Reh Mañach',
     'SKRTEEEEEE',
+    // Baja competencia - Sant Cugat del Vallès
+    'programador Sant Cugat del Valles',
+    'desenvolupador Sant Cugat',
+    'programador industrial Sant Cugat',
+    'pressupost SCADA Sant Cugat',
+    // Catalunya
+    'programador Catalunya',
+    'desenvolupador web Catalunya',
+    'programador industrial Catalunya',
+    'contractar programador Catalunya',
+    'pressupost SCADA Catalunya',
+    'desenvolupador fullstack Catalunya',
+    // Barcelona
+    'programador industrial bcn',
+    'contractar programador industrial bcn',
+    'pressupost SCADA bcn',
+    'programador fullstack bcn',
     'desenvolupador web Barcelona',
     'desenvolupador fullstack Barcelona',
     'programador Barcelona',
@@ -130,10 +159,7 @@ export const keywords = {
     'desenvolupador Next.js Barcelona',
     'desenvolupador TypeScript Barcelona',
     'desenvolupador industrial Barcelona',
-    'IIoT developer Barcelona',
     'DevOps Barcelona',
-    'desenvolupador frontend Barcelona',
-    'desenvolupador backend Barcelona',
     'freelance developer Barcelona',
     'contractar programador Barcelona',
   ],

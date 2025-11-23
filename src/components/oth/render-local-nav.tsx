@@ -8,6 +8,7 @@ export function RenderLocalNav({
   type,
   config,
   className = "flex flex-row items-center gap-2",
+  title,
 }: {
   type: "estudios" | "info" | "portafolio" | "cv";
   config: {
@@ -15,7 +16,8 @@ export function RenderLocalNav({
     pathname: string
   }
   className?: string;
-  children?: ReactNode; 
+  children?: ReactNode;
+  title?: string;
 }) {
   const locale = useLocale();
   
@@ -55,7 +57,7 @@ export function RenderLocalNav({
     };
 
     return (
-      <button onClick={handleCvClick} className={className}>
+      <button onClick={handleCvClick} className={className} title={title}>
         <div>{icon}</div>
         <div className="w-full text-center">{config.text}</div>
       </button>
@@ -63,7 +65,7 @@ export function RenderLocalNav({
   }
 
   return (
-    <Link href={pathname} className={className}>
+    <Link href={pathname} className={className} title={title}>
       <div>{icon}</div>
       <div className="w-full text-center">{config.text}</div>
     </Link>

@@ -35,6 +35,14 @@
           "cv": "Currículum Web",
           "old_frontend": "Versió antiga",
           "contact_me": "Contacta amb mi"
+        },
+        "seo": {
+          "primary_actions": "Accions principals - Contractar programador Catalunya",
+          "title_portafolio": "Veure projectes de desenvolupament web - Programador Fullstack Barcelona",
+          "title_tech_stack": "Stack tecnològic - React, Next.js, TypeScript, Node.js",
+          "title_studies": "Estudis i certificacions - Desenvolupador web Barcelona",
+          "title_cv": "Descarregar CV - Adan Reh Mañach - Programador Barcelona",
+          "title_old_frontend": "Veure versió anterior del portfolio d'Adan Reh - Desenvolupador Fullstack Barcelona"
         }
       }
     },
