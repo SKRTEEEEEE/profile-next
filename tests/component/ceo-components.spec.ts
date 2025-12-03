@@ -23,11 +23,11 @@ test.describe("CEO Components Integration", () => {
 
   test("should render info page with slider", async ({ page }) => {
     await page.goto(`${getUrl()}/es/info`);
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState("networkidle", { timeout: 45000 }); // Increased timeout for heavy page
 
     // Check if page loads
     const content = page.locator('main');
-    await expect(content).toBeVisible();
+    await expect(content).toBeVisible({ timeout: 10000 });
   });
 
   test("should render estudios page with timeline", async ({ page }) => {

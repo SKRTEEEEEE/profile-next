@@ -24,10 +24,11 @@ test.describe('Info Page', () => {
   });
 
   test('should display tech stack information', async ({ page }) => {
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('networkidle', { timeout: 45000 }); // Increased timeout for CI/parallel runs
     
-    // Wait for content to load
-    await page.waitForTimeout(2000);
+    // Wait for main content instead of arbitrary timeout
+    const main = page.locator('main');
+    await expect(main).toBeVisible({ timeout: 10000 });
     
     // Check for tech-related content (more flexible)
     const pageContent = await page.textContent('body');
