@@ -195,7 +195,7 @@ jobs:
     # README already points to shields endpoints; no automatic edits needed
 
     # Upload test report
-    - uses: actions/upload-artifact@v5
+    - uses: actions/upload-artifact@v6
       if: always()
       with:
         name: playwright-report
@@ -203,7 +203,7 @@ jobs:
         retention-days: 30
     
     # Upload coverage report
-    - uses: actions/upload-artifact@v5
+    - uses: actions/upload-artifact@v6
       if: always()
       with:
         name: coverage-report
