@@ -16,7 +16,6 @@ jobs:
     # Checkout con fetch-depth completo para git operations
     - uses: actions/checkout@v5
       with:
-        submodules: true
         fetch-depth: 0
         token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -34,6 +33,8 @@ jobs:
     # Install dependencies (usa caché si está disponible)
     - name: Install dependencies
       run: npm ci
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     # Caché de Playwright browsers
     - name: Get Playwright version

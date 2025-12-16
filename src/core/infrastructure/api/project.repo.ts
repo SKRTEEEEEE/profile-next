@@ -3,7 +3,7 @@ import {
   ProjectInterface,
 } from "@/core/application/interface/project.interface";
 import { ApiBaseRepository } from "./base.repo";
-import { ResFlow } from "@/core/domain/flows/res.type";
+import { ResFlow } from "@skrteeeeee/profile-domain";
 
 export class ProjectApiRepository
   extends ApiBaseRepository

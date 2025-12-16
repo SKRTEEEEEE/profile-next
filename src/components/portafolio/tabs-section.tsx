@@ -8,7 +8,7 @@ import TimeLine, { DataTimeLine } from "../ceo/time-line";
 import { DynamicLucideIcon, LucideIconNames } from "@/components/oth/dyn/dynamic-lucide";
 import { useReducer } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { IntlKey } from "@/core/domain/entities/intl.type";
+import { IntlKey } from "@skrteeeeee/profile-domain";
 import type { Project } from "@/core/application/interface/project.interface";
 
 // style layout

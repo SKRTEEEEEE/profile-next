@@ -1,5 +1,5 @@
 import { useLocale } from "next-intl";
-import { IntlKey } from "@/core/domain/entities/intl.type";
+import { IntlKey } from "@skrteeeeee/profile-domain";
 import { cn } from "@/lib/utils"
 import { DynamicLucideIcon, LucideIconNames } from "@/components/oth/dyn/dynamic-lucide";
 import type { Project } from "@/core/application/interface/project.interface";

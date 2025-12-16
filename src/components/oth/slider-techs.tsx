@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { FullTechData } from '@/core/domain/entities/tech';
+import { FullTechData } from '@skrteeeeee/profile-domain';
 import { useTranslations } from 'next-intl';
 import { createSimpleIconByNameBadge, DynamicSimpleIcon } from '@/components/oth/dyn/dynamic-si';
 

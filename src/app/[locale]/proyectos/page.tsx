@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Link as LinkLocale } from '@/lib/i18n/routing';
 import { readProjectsDeployedUC } from '@/core/application/usecases/entities/project';
-import { IntlKey } from '@/core/domain/entities/intl.type';
+import { IntlKey } from '@skrteeeeee/profile-domain';
 import { Project } from '@/core/application/interface/project.interface';
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo/metadata';
 import { Metadata } from 'next';

@@ -9,9 +9,9 @@ import 'swiper/css/navigation';
 import styles from './autoplay-slider-techs.module.css';
 import  { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { useLocale } from 'next-intl';
-import { IntlKey } from '@/core/domain/entities/intl.type';
+import { IntlKey } from '@skrteeeeee/profile-domain';
 import { DynamicSimpleIcon, createSimpleIconByNameBadge } from '../oth/dyn/dynamic-si';
-import { TechProject } from '@/core/domain/entities/project';
+import { TechProject } from '@skrteeeeee/profile-domain';
 
 type AutoplaySliderProps = {
     delay?: number;

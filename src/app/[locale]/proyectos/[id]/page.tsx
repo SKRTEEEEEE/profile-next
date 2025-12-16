@@ -5,11 +5,11 @@ import Link from "next/link";
 import { Link as LinkLocale } from "@/lib/i18n/routing"
 import { getLocale, getTranslations } from "next-intl/server";
 import { readProjectByIdUC } from "@/core/application/usecases/entities/project";
-import { IntlKey } from "@/core/domain/entities/intl.type";
+import { IntlKey } from "@skrteeeeee/profile-domain";
 import { createSimpleIconByNameBadge, DynamicSimpleIcon } from "@/components/oth/dyn/dynamic-si";
-import { KeyProject, TechProject } from "@/core/domain/entities/project";
+import { KeyProject, TechProject } from "@skrteeeeee/profile-domain";
 import { LucideIconNames } from "@/dynamic.types";
-import { TypeProject } from "@/core/domain/entities/project.type";
+import { TypeProject } from "@skrteeeeee/profile-domain";
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo/metadata";
 import { Metadata } from "next";
 
