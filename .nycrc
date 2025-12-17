@@ -26,10 +26,12 @@
   ],
   "reporter": [
     "text",
+    "text-summary",
     "html",
-    "lcov",
     "json-summary"
   ],
-  "report-dir": "./docs/coverage",
+  "report-dir": "./docs/coverage/playwright",
+  "show-process-tree": false,
+  "skip-full": false,
   "temp-dir": "./.nyc_output"
 }

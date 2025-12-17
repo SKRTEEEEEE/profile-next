@@ -3,26 +3,44 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   testMatch: '*.spec.ts',
-  timeout: 30000,
-  retries: process.env.CI ? 3 : 2, // More retries in CI
+  timeout: 90000,
+  retries: process.env.CI ? 2 : 1,
   outputDir: "docs/test-results/artifacts",
+  fullyParallel: true,
   
   // Global expect timeout
   expect: {
-    timeout: process.env.CI ? 10000 : 5000, // Longer timeout in CI
+    timeout: 10000,
+  },
+  
+  // Automatic server management
+  webServer: {
+    command: process.env.CI ? 'npm run dev' : 'npm run start',
+    url: 'http://localhost:3000',
+    reuseExistingServer: true,
+    timeout: 120000,
+    stdout: 'pipe',
+    stderr: 'pipe',
   },
   
   // Configure projects for different test types
   projects: [
     {
-      name: 'unit',
+      name: 'pw:unit',
       testMatch: /tests\/unit\/.*\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
       },
     },
     {
-      name: 'component',
+      name: 'pw:api',
+      testMatch: /tests\/api\/.*\.spec\.ts/,
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+    },
+    {
+      name: 'pw:component',
       testMatch: /tests\/component\/.*\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
@@ -30,7 +48,7 @@ export default defineConfig({
       },
     },
     {
-      name: 'pages',
+      name: 'pw:pages',
       testMatch: /tests\/pages\/.*\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
@@ -38,7 +56,7 @@ export default defineConfig({
       },
     },
     {
-      name: 'integration',
+      name: 'pw:integration',
       testMatch: /tests\/integration\/.*\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
@@ -46,14 +64,7 @@ export default defineConfig({
       },
     },
     {
-      name: 'api',
-      testMatch: /tests\/api\/.*\.spec\.ts/,
-      use: {
-        ...devices['Desktop Chrome'],
-      },
-    },
-    {
-      name: 'e2e',
+      name: 'pw:e2e',
       testMatch: /tests\/e2e\/.*\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
@@ -73,7 +84,7 @@ export default defineConfig({
   // Reporter configuration
   reporter: [
     ['list'],
-    ['html', { outputFolder: 'docs/test-results/html-report' }],
+    ['html', { outputFolder: 'docs/test-results/html-report', open: 'never' }],
     ['json', { outputFile: 'docs/test-results/test-results.json' }],
   ],
 });

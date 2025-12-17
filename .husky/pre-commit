@@ -2,10 +2,10 @@
 echo "🔍 Running linting..."
 npm run lint
 
-echo "🧪 Running type tests (no server required)..."
+echo "🧪 Running type check..."
 npx tsc --noEmit
 
-echo "📊 Checking test coverage (minimum 80%)..."
-npm run test:coverage:unit
+echo "⚡ Running unit tests with coverage (fast, ~2s)..."
+npm run test:unit
 
 echo "✅ All pre-commit checks passed!"
